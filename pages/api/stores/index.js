@@ -18,7 +18,7 @@ handler.get(async (req, res) => {
     const stores = await req.db.collection('stores').find(query).toArray();
     res.json(stores);
   } catch (err) {
-    res.json({ msg: 'Unexpected Error' });
+    res.json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -31,7 +31,7 @@ handler.post(async (req, res) => {
     const { insertedId } = await req.db.collection('stores').insertOne(store);
     res.json({ id: insertedId, msg: 'Success' });
   } catch (err) {
-    res.json({ msg: 'Unexpected Error' });
+    res.json({ msg: 'Unexpected Error', err });
   }
 });
 

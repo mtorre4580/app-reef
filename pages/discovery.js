@@ -1,9 +1,9 @@
 import styles from '../styles/discovery.module.scss';
-import itemsService from './api/services/items';
+import axios from 'axios';
 
-export default function Discovery({ items }) {
+export default function Discovery({ items, paging }) {
   const applyFilter = (type) => {
-    console.log('aplicar filtro...', type);
+    console.log('apply filter...', items, paging);
   };
 
   return (
@@ -43,11 +43,16 @@ export default function Discovery({ items }) {
 }
 
 export async function getStaticProps() {
-  const items = await itemsService.all();
-
-  return {
-    props: {
-      items,
-    },
-  };
+  try {
+    const { data } = await axios.get('http://localhost:3000/api/items');
+    return {
+      props: {
+        ...data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: null,
+    };
+  }
 }
