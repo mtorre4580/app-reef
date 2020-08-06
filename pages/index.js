@@ -10,5 +10,5 @@ export default function Home() {
       <main>home</main>
       <footer></footer>
     </section>
-  )
+  );
 }

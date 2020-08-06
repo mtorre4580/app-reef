@@ -1,4 +1,4 @@
-import { ItemsService } from "./services";
+import { ItemsService } from './services';
 
 export default async (req, res) => {
   if (req.method === 'GET') {

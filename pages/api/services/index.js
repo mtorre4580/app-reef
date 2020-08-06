@@ -1,5 +1,3 @@
 import ItemsService from './items';
 
-export {
-    ItemsService,
-};
+export { ItemsService };

@@ -1,5 +1,5 @@
-@import "./colors.scss";
-@import "./variables.scss";
+@import './colors.scss';
+@import './variables.scss';
 
 .login {
   height: 100%;
@@ -22,7 +22,7 @@
   }
 
   .titleSection {
-    font-family: "Rubik", sans-serif;
+    font-family: 'Rubik', sans-serif;
     color: $color-white;
     text-align: center;
     padding: $padding 0;

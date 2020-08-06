@@ -1,9 +1,9 @@
-import styles from "../styles/discovery.module.scss";
-import itemsService from "./api/services/items";
+import styles from '../styles/discovery.module.scss';
+import itemsService from './api/services/items';
 
 export default function Discovery({ items }) {
   const applyFilter = (type) => {
-      console.log('aplicar filtro...', type);
+    console.log('aplicar filtro...', type);
   };
 
   return (
@@ -11,13 +11,13 @@ export default function Discovery({ items }) {
       <header className={styles.header}>
         <h1 className={styles.title}>Corales</h1>
         <nav className={styles.navCorals}>
-          <button className={styles.type} onClick={() => applyFilter("SPS")}>
+          <button className={styles.type} onClick={() => applyFilter('SPS')}>
             <h2 className={styles.filter}>SPS</h2>
           </button>
-          <button className={styles.type} onClick={() => applyFilter("LPS")}>
+          <button className={styles.type} onClick={() => applyFilter('LPS')}>
             <h2 className={styles.filter}>LPS</h2>
           </button>
-          <button className={styles.type} onClick={() => applyFilter("SOFT")}>
+          <button className={styles.type} onClick={() => applyFilter('SOFT')}>
             <h2 className={styles.filter}>Soft</h2>
           </button>
         </nav>

@@ -1,5 +1,5 @@
-import Head from "next/head";
-import styles from "../styles/register.module.scss";
+import Head from 'next/head';
+import styles from '../styles/register.module.scss';
 
 function Register() {
   return (
