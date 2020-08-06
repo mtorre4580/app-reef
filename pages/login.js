@@ -18,16 +18,16 @@ function Login() {
         <div className={styles.content}>
           <img className={styles.logoApp} src="/assets/img/coral.svg" alt="reefCorals" />
           <h1 className={styles.titleSection}>freeCoral</h1>
-          <p className={styles.titleSubtitle}>Comprá de la forma mas sencilla</p>
+          <p className={styles.titleSubtitle}>Enjoy buy from home!</p>
         </div>
         <form className={styles.formLogin} onSubmit={handleSubmit}>
           <input className={styles.form} type="email" placeholder="email" />
           <input className={styles.form} type="password" placeholder="contraseña" />
-          <button className={`${styles.form} ${styles.formBtn}`}>Acceder</button>
+          <button className={`${styles.form} ${styles.formBtn}`}>Login</button>
         </form>
         <div className={styles.register}>
           <Link href="/register">
-            <a>Crear una nueva cuenta</a>
+            <a>New account ?</a>
           </Link>
         </div>
       </section>

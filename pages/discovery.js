@@ -1,42 +1,59 @@
 import styles from '../styles/discovery.module.scss';
-import axios from 'axios';
+import InfiniteScroll from '../components/InfiniteScroll';
+import { getAll, getMore, filterByType } from '../services/items';
 
 export default function Discovery({ items, paging }) {
-  const applyFilter = (type) => {
-    console.log('apply filter...', items, paging);
+  const [state, setState] = React.useState({
+    limit: paging.limit,
+    total: paging.total,
+    offset: paging.offset,
+    hasNextPage: items.length < paging.total,
+    isNextPageLoading: false,
+    items,
+    isFilter: false,
+  });
+
+  const loadNextPage = async () => {
+    if (state.items.length >= state.total) {
+      setState({ ...state, hasNextPage: false, isNextPageLoading: false });
+      return;
+    }
+    try {
+      setState({ ...state, isNextPageLoading: true });
+      const response = await getMore({ limit: state.limit, offset: state.offset + state.limit });
+      setState({
+        ...state,
+        items: [...state.items, ...response.items],
+        offset: response.paging.offset,
+        isNextPageLoading: false,
+      });
+    } catch (err) {
+      setState({ ...state, isNextPageLoading: false });
+    }
+  };
+
+  const applyFilter = async (type) => {
+    try {
+      setState({ ...state, isFilter: true });
+      const response = await filterByType(type);
+      setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
+    } catch (err) {}
   };
 
   return (
     <section className={styles.discovery}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Corales</h1>
-        <nav className={styles.navCorals}>
-          <button className={styles.type} onClick={() => applyFilter('SPS')}>
-            <h2 className={styles.filter}>SPS</h2>
-          </button>
-          <button className={styles.type} onClick={() => applyFilter('LPS')}>
-            <h2 className={styles.filter}>LPS</h2>
-          </button>
-          <button className={styles.type} onClick={() => applyFilter('SOFT')}>
-            <h2 className={styles.filter}>Soft</h2>
-          </button>
-        </nav>
+        <h1 className={styles.title}>Corals</h1>
       </header>
       <section className={styles.items}>
-        <div className={styles.row}>
-          {items.map((item) => {
-            return (
-              <article className={styles.item} key={item.id}>
-                <img className={styles.itemImg} src={item.img} alt="img" />
-                <div className={styles.itemDescription}>
-                  <h1 className={styles.itemTitle}>{item.title}</h1>
-                  <p>{item.price.value}</p>
-                  <p>{item.size}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+        <InfiniteScroll
+          hasNextPage={state.hasNextPage}
+          isNextPageLoading={state.isNextPageLoading}
+          items={state.items}
+          loadNextPage={loadNextPage}
+          onClick={applyFilter}
+          isFilter={state.isFilter}
+        />
       </section>
     </section>
   );
@@ -44,10 +61,10 @@ export default function Discovery({ items, paging }) {
 
 export async function getStaticProps() {
   try {
-    const { data } = await axios.get('http://localhost:3000/api/items');
+    const response = await getAll();
     return {
       props: {
-        ...data,
+        ...response,
       },
     };
   } catch (err) {

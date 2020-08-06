@@ -6,7 +6,7 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-  const { q, type, limit = 4, offset: offsetString = 0 } = req.query;
+  const { q, type, limit = 8, offset = 0 } = req.query;
   let query = {};
   if (q) {
     query = { ...query, title: { $regex: q, $options: 'i' } };
@@ -15,15 +15,16 @@ handler.get(async (req, res) => {
     query = { ...query, type: type.toUpperCase() };
   }
   try {
-    const offset = parseInt(offsetString);
-    const cursor = req.db.collection('items').find(query).skip(offset).limit(limit);
+    const offsetInt = parseInt(offset);
+    const limitInt = parseInt(limit);
+    const cursor = req.db.collection('items').find(query).skip(offsetInt).limit(limitInt);
     const total = await cursor.count();
     const items = await cursor.toArray();
     res.json({
       paging: {
         total,
-        offset,
-        limit,
+        offset: offsetInt,
+        limit: limitInt,
       },
       items,
     });
