@@ -1,0 +1,21 @@
+@import './colors.scss';
+@import "./variables.scss";
+
+.register {
+    background-color: $color-main;
+    height: 100%;
+
+    .title {
+        text-align: center;
+        font-family: "Rubik", sans-serif;
+        font-size: 30px;
+        background-color: #5e92f3;
+        color: $color-white;
+        padding: 10px 0;
+    }
+    .description {
+        text-align: center;
+        padding: 20px;
+        color: $color-white;
+    }
+}
