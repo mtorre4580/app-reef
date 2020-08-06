@@ -1,5 +1,8 @@
 ## ReefCorals
 
+[![Build Status](https://travis-ci.com/mtorre4580/app-reef.svg?branch=master)](https://travis-ci.com/mtorre4580/app-reef)
+[![conventional commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+
 First, run the development server:
 
 ```bash
