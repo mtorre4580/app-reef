@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 
 export default function CoralItem({ item, style, isFilter }) {
   if (isFilter) {
-    return <div class={`${styles.box} ${styles.shine}`}></div>;
+    return <div className={`${styles.box} ${styles.shine}`}></div>;
   }
   return (
     <section style={style} className={styles.row}>

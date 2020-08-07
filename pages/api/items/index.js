@@ -1,5 +1,6 @@
 import nextConnect from 'next-connect';
 import middleware from '../../../middleware/database';
+import { AssertArrayItems, AssertItem } from '../../../validations/items';
 
 const handler = nextConnect();
 
@@ -29,7 +30,7 @@ handler.get(async (req, res) => {
       items,
     });
   } catch (err) {
-    res.json({ msg: 'Unexpected Error', err });
+    res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -37,15 +38,19 @@ handler.post(async (req, res) => {
   const item = req.body;
   const isLot = Array.isArray(item);
   try {
+    const { error } = isLot ? AssertArrayItems.validate(item) : AssertItem.validate(item);
+    if (error) {
+      return res.status(400).json({ error: error.details });
+    }
     if (isLot) {
       await req.db.collection('items').insertMany(item);
-      res.json({ msg: 'Success' });
+      res.status(200).json({ msg: 'Success' });
     } else {
       const { insertedId } = await req.db.collection('items').insertOne(item);
-      res.json({ id: insertedId, msg: 'Success' });
+      res.status(200).json({ id: insertedId, msg: 'Success' });
     }
   } catch (err) {
-    res.json({ msg: 'Unexpected Error', err });
+    res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 

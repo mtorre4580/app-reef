@@ -1,6 +1,7 @@
 import nextConnect from 'next-connect';
 import middleware from '../../../middleware/database';
 import { ObjectID } from 'mongodb';
+import { AssertItem } from '../../../validations/items';
 
 const handler = nextConnect();
 
@@ -12,9 +13,9 @@ handler.delete(async (req, res) => {
   } = req;
   try {
     await req.db.collection('items').deleteOne({ _id: ObjectID(id) });
-    res.json({ msg: 'Success' });
+    res.status(200).json({ msg: 'Success' });
   } catch (err) {
-    res.json({ msg: 'Unexpected Error', err });
+    res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -24,10 +25,14 @@ handler.put(async (req, res) => {
   } = req;
   const item = req.body;
   try {
+    const { error } = AssertItem.validate(item);
+    if (error) {
+      return res.status(400).json({ error: error.details });
+    }
     await req.db.collection('items').updateOne({ _id: ObjectID(id) }, { $set: { ...item } });
-    res.json({ msg: 'Success' });
+    res.status(200).json({ msg: 'Success' });
   } catch (err) {
-    res.json({ msg: 'Unexpected Error', err });
+    res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 

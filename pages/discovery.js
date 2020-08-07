@@ -1,6 +1,7 @@
 import styles from '../styles/discovery.module.scss';
 import InfiniteScroll from '../components/InfiniteScroll';
-import { getAll, getMore, filterByType } from '../services/items';
+import SearchBox from '../components/SearchBox';
+import { getAll, getMore, filterByType, search } from '../services/items';
 
 export default function Discovery({ items, paging }) {
   const [state, setState] = React.useState({
@@ -40,10 +41,27 @@ export default function Discovery({ items, paging }) {
     } catch (err) {}
   };
 
+  const handleSearch = async (query) => {
+    try {
+      setState({ ...state, isFilter: true });
+      const response = await search(query);
+      setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
+    } catch (err) {}
+  };
+
+  const handleOnClear = async () => {
+    try {
+      setState({ ...state, isFilter: true });
+      const response = await getAll();
+      setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
+    } catch (err) {}
+  };
+
   return (
     <section className={styles.discovery}>
       <header className={styles.header}>
         <h1 className={styles.title}>Corals</h1>
+        <SearchBox onSubmit={handleSearch} onClear={handleOnClear} />
       </header>
       <section className={styles.items}>
         <InfiniteScroll
@@ -63,9 +81,7 @@ export async function getStaticProps() {
   try {
     const response = await getAll();
     return {
-      props: {
-        ...response,
-      },
+      props: response,
     };
   } catch (err) {
     return {
