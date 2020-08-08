@@ -7,6 +7,18 @@ const handler = nextConnect();
 
 handler.use(middleware);
 
+handler.get(async (req, res) => {
+  const {
+    query: { id },
+  } = req;
+  try {
+    const item = await req.db.collection('items').findOne({ _id: ObjectID(id) });
+    res.status(200).json(item);
+  } catch (err) {
+    res.status(500).json({ msg: 'Unexpected Error', err });
+  }
+});
+
 handler.delete(async (req, res) => {
   const {
     query: { id },

@@ -11,6 +11,7 @@ const AssertItem = Joi.object({
   free_shipping: Joi.bool(),
   size: Joi.string().required(),
   img: Joi.string(),
+  imgs: Joi.array(),
 });
 
 const AssertArrayItems = Joi.array().items(AssertItem);

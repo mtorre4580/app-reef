@@ -21,3 +21,8 @@ export async function search(q) {
   const { data } = await axios.get(API_ITEMS, { params: { q } });
   return data;
 }
+
+export async function getDetail(id) {
+  const { data } = await axios.get(`${API_ITEMS}/${id}`);
+  return data;
+}

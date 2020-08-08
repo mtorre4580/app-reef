@@ -1,0 +1,57 @@
+import styles from '../../styles/detail.module.scss';
+import { withTranslation } from '../../i18n';
+import { getDetail } from '../../services/items';
+import Head from 'next/head';
+import Header from '../../components/Header';
+import CarouselImages from '../../components/CarouselImages';
+
+function Detail({ t, item }) {
+  return (
+    <>
+      <Head>
+        <title>{t('detail')}</title>
+      </Head>
+      <section className={styles.detail}>
+        <Header title={t('detail')}></Header>
+        <CarouselImages imgs={item.imgs} img={item.img} />
+        <div style={{ padding: '20px' }}>
+          <div>
+            <h2 className={styles.titleCoral}>{item.title}</h2>
+            <p>{item.description}</p>
+          </div>
+          <div className={styles.detailCoral}>
+            <h2 className={styles.title}>{t('price')}</h2>
+            <p className={styles.price}>
+              {item.price.coin}
+              {item.price.value}
+            </p>
+          </div>
+          <div className={styles.detailCoral}>
+            <h2 className={styles.title}>{t('size')}</h2>
+            <p>{item.size}</p>
+          </div>
+          <div className={styles.actions}>
+            <button className={styles.btn}>{t('buy')}</button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+Detail.getInitialProps = async (ctx) => {
+  try {
+    const { id } = ctx.query;
+    const item = await getDetail(id);
+    return {
+      item,
+      namespacesRequired: ['detail'],
+    };
+  } catch (err) {
+    return {
+      props: null,
+    };
+  }
+};
+
+export default withTranslation('detail')(Detail);
