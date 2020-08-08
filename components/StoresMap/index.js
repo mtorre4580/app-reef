@@ -10,7 +10,7 @@ const STYLE_MAP = {
 
 const LANGUAGE_MAP = 'es-AR';
 
-const API_KEY_MAP = process.env.API_KEY_MAP;
+const API_KEY_MAP = process.env.NEXT_PUBLIC_API_KEY_MAPS;
 
 function LoadingContainer() {
   return <div className={`${styles.loadingMap} ${styles.shine}`} />;
