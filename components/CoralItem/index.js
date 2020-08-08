@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.module.scss';
 
-export default function CoralItem({ item, style, isFilter }) {
+export default function CoralItem({ item, style, isFilter, t }) {
   if (isFilter) {
     return <div className={`${styles.box} ${styles.shine}`}></div>;
   }
@@ -12,10 +12,12 @@ export default function CoralItem({ item, style, isFilter }) {
         <div className={styles.itemDescription}>
           <h1 className={styles.itemTitle}>{item.title}</h1>
           <p className={styles.itemSubtitle}>
-            Price: {item.price.coin} {item.price.value}
+            {t('price')} {item.price.coin} {item.price.value}
           </p>
-          <p className={styles.itemSubtitle}>Size: {item.size.toLowerCase()}</p>
-          {item.free_shipping && <p className={styles.free_shipping}>Free Shipping</p>}
+          <p className={styles.itemSubtitle}>
+            {t('size')}: {item.size.toLowerCase()}
+          </p>
+          {item.free_shipping && <p className={styles.free_shipping}>{t('free_shipping')}</p>}
         </div>
       </article>
     </section>

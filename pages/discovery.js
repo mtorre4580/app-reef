@@ -1,11 +1,15 @@
 import styles from '../styles/discovery.module.scss';
+import { useState } from 'react';
+import { getAll, getMore, filterByType, search } from '../services/items';
+import { withTranslation } from '../i18n';
 import InfiniteScroll from '../components/InfiniteScroll';
 import SearchBox from '../components/SearchBox';
 import Header from '../components/Header';
-import { getAll, getMore, filterByType, search } from '../services/items';
+import Snackbar from '../components/Snackbar';
 
-function Discovery({ items, paging }) {
-  const [state, setState] = React.useState({
+function Discovery({ items, paging, t }) {
+  const [showError, setShowError] = useState('');
+  const [state, setState] = useState({
     limit: paging.limit,
     total: paging.total,
     offset: paging.offset,
@@ -39,7 +43,9 @@ function Discovery({ items, paging }) {
       setState({ ...state, isFilter: true });
       const response = await filterByType(type);
       setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
-    } catch (err) {}
+    } catch (err) {
+      setShowError(t('error_filter'));
+    }
   };
 
   const handleSearch = async (query) => {
@@ -47,7 +53,9 @@ function Discovery({ items, paging }) {
       setState({ ...state, isFilter: true });
       const response = await search(query);
       setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
-    } catch (err) {}
+    } catch (err) {
+      setShowError(t('error_searching'));
+    }
   };
 
   const handleOnClear = async () => {
@@ -55,14 +63,17 @@ function Discovery({ items, paging }) {
       setState({ ...state, isFilter: true });
       const response = await getAll();
       setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
-    } catch (err) {}
+    } catch (err) {
+      setShowError(t('error_clear'));
+    }
   };
 
   return (
     <section className={styles.discovery}>
-      <Header title="Corals">
-        <SearchBox onSubmit={handleSearch} onClear={handleOnClear} />
+      <Header title={t('corals')}>
+        <SearchBox onSubmit={handleSearch} onClear={handleOnClear} t={t} />
       </Header>
+      {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
       <section className={styles.items}>
         <InfiniteScroll
           hasNextPage={state.hasNextPage}
@@ -71,6 +82,7 @@ function Discovery({ items, paging }) {
           loadNextPage={loadNextPage}
           onClick={applyFilter}
           isFilter={state.isFilter}
+          t={t}
         />
       </section>
     </section>
@@ -79,7 +91,11 @@ function Discovery({ items, paging }) {
 
 Discovery.getInitialProps = async (ctx) => {
   try {
-    return await getAll();
+    const response = await getAll();
+    return {
+      ...response,
+      namespacesRequired: ['discovery'],
+    };
   } catch (err) {
     return {
       props: null,
@@ -87,4 +103,4 @@ Discovery.getInitialProps = async (ctx) => {
   }
 };
 
-export default Discovery;
+export default withTranslation('discovery')(Discovery);

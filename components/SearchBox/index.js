@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 
-export default function SearchBox({ onSubmit, onClear }) {
+export default function SearchBox({ onSubmit, onClear, t }) {
   const [input, setInput] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,14 +19,14 @@ export default function SearchBox({ onSubmit, onClear }) {
         <input
           type="search"
           name="search"
-          placeholder="What coral are you looking for"
+          placeholder={t('placeholder_search')}
           onChange={(event) => setInput(event.target.value)}
           value={input}
         />
       </form>
       {input && (
         <button className={styles.clear} onClick={handleOnClear}>
-          Cancel
+          {t('cancel')}
         </button>
       )}
     </nav>

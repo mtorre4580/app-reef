@@ -1,6 +1,13 @@
 require('dotenv').config();
 
+const { nextI18NextRewrites } = require('next-i18next/rewrites');
+const localeSubpaths = {};
+
 module.exports = {
+  rewrites: async () => nextI18NextRewrites(localeSubpaths),
+  publicRuntimeConfig: {
+    localeSubpaths,
+  },
   env: {
     MONGODB_URI: process.env.MONGODB_URI,
     DB_NAME: process.env.DB_NAME,
