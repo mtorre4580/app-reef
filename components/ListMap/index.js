@@ -16,7 +16,7 @@ export default function ListMap({ t }) {
       setIsLoading(false);
       setStores(results);
     } catch (err) {
-      setError(t('error_results'));
+      setShowError(t('error_results'));
       setIsLoading(false);
       setStores([]);
     }
