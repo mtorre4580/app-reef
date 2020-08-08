@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styles from './style.module.scss';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { getClosest } from '../../services/stores';
+import { usePosition } from '../../hooks/usePosition';
 
 const STYLE_MAP = {
   width: '100%',
-  height: 'calc(100% - 86px)',
+  height: 'calc(100% - 124px)',
 };
 
 const LANGUAGE_MAP = 'es-AR';
@@ -16,16 +17,18 @@ function LoadingContainer() {
   return <div className={`${styles.loadingMap} ${styles.shine}`} />;
 }
 
-function StoresMap({ lat, lng, google }) {
+function StoresMap({ google, showMap, t }) {
+  const { latitude, longitude, error } = usePosition(true);
   const [stores, setStores] = useState([]);
+
   const fetchResults = async () => {
-    const results = await getClosest(lat, lng);
+    const results = await getClosest(latitude, longitude);
     setStores(results);
   };
 
   useEffect(() => {
     fetchResults();
-  }, [lat, lng]);
+  }, []);
 
   const [stateMarker, setStateMarker] = useState({ showingInfoWindow: false, activeMarker: {}, selectedPlace: {} });
 
@@ -39,33 +42,46 @@ function StoresMap({ lat, lng, google }) {
     setStateMarker({ ...stateMarker, selectedPlace: props, activeMarker: marker, showingInfoWindow: true });
   };
 
-  return (
-    <Map google={google} zoom={14} style={STYLE_MAP} initialCenter={{ lat, lng }} onClick={onMapClicked}>
-      <Marker position={{ lat, lng }} />
-      {stores &&
-        stores.map(({ name, location: { coordinates }, logo, web }, index) => (
-          <Marker
-            key={index}
-            onClick={onMarkerClick}
-            name={name}
-            position={{ lat: coordinates[0], lng: coordinates[1] }}
-            icon={{
-              url: logo,
-              anchor: new google.maps.Point(32, 32),
-              scaledSize: new google.maps.Size(64, 64),
-            }}
-            web={web}
-          />
-        ))}
-      <InfoWindow marker={stateMarker.activeMarker} visible={stateMarker.showingInfoWindow}>
-        <article>
-          <h1>
-            <a href={stateMarker.selectedPlace.web}>{stateMarker.selectedPlace.name}</a>
-          </h1>
-        </article>
-      </InfoWindow>
-    </Map>
-  );
+  if (error) {
+    return <p>{t('error_map')}</p>;
+  }
+
+  if (latitude && longitude) {
+    return (
+      <Map
+        google={google}
+        zoom={14}
+        style={{ ...STYLE_MAP, visibility: showMap ? 'visible' : 'hidden' }}
+        initialCenter={{ lat: latitude, lng: longitude }}
+        onClick={onMapClicked}
+      >
+        <Marker position={{ lat: latitude, lng: longitude }} />
+        {stores &&
+          stores.map(({ name, location: { coordinates }, logo, web }, index) => (
+            <Marker
+              key={index}
+              onClick={onMarkerClick}
+              name={name}
+              position={{ lat: coordinates[0], lng: coordinates[1] }}
+              icon={{
+                url: logo,
+                anchor: new google.maps.Point(32, 32),
+                scaledSize: new google.maps.Size(64, 64),
+              }}
+              web={web}
+            />
+          ))}
+        <InfoWindow marker={stateMarker.activeMarker} visible={stateMarker.showingInfoWindow}>
+          <article>
+            <h1>
+              <a href={stateMarker.selectedPlace.web}>{stateMarker.selectedPlace.name}</a>
+            </h1>
+          </article>
+        </InfoWindow>
+      </Map>
+    );
+  }
+  return null;
 }
 
 export default GoogleApiWrapper({

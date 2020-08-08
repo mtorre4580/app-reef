@@ -1,5 +1,9 @@
 {
   "find_near_stores": "Encontrá los locales más cercanos",
   "error_map": "Se produjo un error al cargar el mapa",
-  "stores": "Locales"
+  "stores": "Locales",
+  "contact": "Contactar",
+  "loading_results": "Cargando resultados, por favor espere",
+  "error_results": "Se produjo un error al cargar los resultados",
+  "no_results": "Sin resultados"
 }

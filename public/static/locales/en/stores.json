@@ -1,5 +1,9 @@
 {
   "find_near_stores": "Find the nearest stores",
   "error_map": "There was an error loading the map",
-  "stores": "Stores"
+  "stores": "Stores",
+  "contact": "Contact",
+  "loading_results": "Loading results, wait one moment please",
+  "error_results": "There was an error loading results",
+  "no_results": "No results"
 }

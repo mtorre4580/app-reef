@@ -1,0 +1,46 @@
+.listMap {
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 124px;
+  width: 100%;
+  .loading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    margin: auto;
+  }
+  .store {
+    z-index: 5;
+    width: 50%;
+    text-align: center;
+    margin: 20px 0;
+    .title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    img {
+      height: 64px;
+      margin: 20px auto;
+      display: block;
+      border-radius: 4px;
+    }
+    .info {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 10px;
+    }
+    .call {
+      background-color: #7e57c2;
+      color: #fff;
+      padding: 10px;
+      border-radius: 20px;
+      display: block;
+      width: 100px;
+      margin: auto;
+    }
+  }
+}
