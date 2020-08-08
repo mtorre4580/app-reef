@@ -1,9 +1,10 @@
 import styles from '../styles/discovery.module.scss';
 import InfiniteScroll from '../components/InfiniteScroll';
 import SearchBox from '../components/SearchBox';
+import Header from '../components/Header';
 import { getAll, getMore, filterByType, search } from '../services/items';
 
-export default function Discovery({ items, paging }) {
+function Discovery({ items, paging }) {
   const [state, setState] = React.useState({
     limit: paging.limit,
     total: paging.total,
@@ -59,10 +60,9 @@ export default function Discovery({ items, paging }) {
 
   return (
     <section className={styles.discovery}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Corals</h1>
+      <Header title="Corals">
         <SearchBox onSubmit={handleSearch} onClear={handleOnClear} />
-      </header>
+      </Header>
       <section className={styles.items}>
         <InfiniteScroll
           hasNextPage={state.hasNextPage}
@@ -77,15 +77,14 @@ export default function Discovery({ items, paging }) {
   );
 }
 
-export async function getStaticProps() {
+Discovery.getInitialProps = async (ctx) => {
   try {
-    const response = await getAll();
-    return {
-      props: response,
-    };
+    return await getAll();
   } catch (err) {
     return {
       props: null,
     };
   }
-}
+};
+
+export default Discovery;
