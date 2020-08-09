@@ -6,7 +6,7 @@ import { usePosition } from '../../hooks/usePosition';
 
 const STYLE_MAP = {
   width: '100%',
-  height: 'calc(100% - 124px)',
+  height: 'calc(100% - 136px)',
 };
 
 const LANGUAGE_MAP = 'es-AR';

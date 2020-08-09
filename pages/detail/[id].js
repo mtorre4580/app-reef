@@ -1,4 +1,5 @@
 import styles from '../../styles/detail.module.scss';
+import { createRef } from 'react';
 import { withTranslation } from '../../i18n';
 import { getDetail } from '../../services/items';
 import Head from 'next/head';
@@ -6,36 +7,35 @@ import Header from '../../components/Header';
 import CarouselImages from '../../components/CarouselImages';
 
 function Detail({ t, item }) {
+  const ref = createRef();
   return (
-    <>
+    <section className={styles.detail} ref={ref}>
       <Head>
         <title>{t('detail')}</title>
       </Head>
-      <section className={styles.detail}>
-        <Header title={t('detail')}></Header>
-        <CarouselImages imgs={item.imgs} img={item.img} />
-        <div style={{ padding: '20px' }}>
-          <div>
-            <h2 className={styles.titleCoral}>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
-          <div className={styles.detailCoral}>
-            <h2 className={styles.title}>{t('price')}</h2>
-            <p className={styles.price}>
-              {item.price.coin}
-              {item.price.value}
-            </p>
-          </div>
-          <div className={styles.detailCoral}>
-            <h2 className={styles.title}>{t('size')}</h2>
-            <p>{item.size}</p>
-          </div>
-          <div className={styles.actions}>
-            <button className={styles.btn}>{t('buy')}</button>
-          </div>
+      <Header title={t('detail')} refSection={ref} />
+      <CarouselImages imgs={item.imgs} img={item.img} />
+      <div style={{ padding: '20px' }}>
+        <div>
+          <h2 className={styles.titleCoral}>{item.title}</h2>
+          <p>{item.description}</p>
         </div>
-      </section>
-    </>
+        <div className={styles.detailCoral}>
+          <h2 className={styles.title}>{t('price')}</h2>
+          <p className={styles.price}>
+            {item.price.coin}
+            {item.price.value}
+          </p>
+        </div>
+        <div className={styles.detailCoral}>
+          <h2 className={styles.title}>{t('size')}</h2>
+          <p>{item.size}</p>
+        </div>
+        <div className={styles.actions}>
+          <button className={styles.btn}>{t('buy')}</button>
+        </div>
+      </div>
+    </section>
   );
 }
 

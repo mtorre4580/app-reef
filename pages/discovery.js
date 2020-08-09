@@ -1,5 +1,5 @@
 import styles from '../styles/discovery.module.scss';
-import { useState } from 'react';
+import { useState, createRef } from 'react';
 import { getAll, getMore, filterByType, search } from '../services/items';
 import { withTranslation } from '../i18n';
 import InfiniteScroll from '../components/InfiniteScroll';
@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Snackbar from '../components/Snackbar';
 
 function Discovery({ items, paging, t }) {
+  const ref = createRef();
   const [showError, setShowError] = useState('');
   const [state, setState] = useState({
     limit: paging.limit,
@@ -69,8 +70,8 @@ function Discovery({ items, paging, t }) {
   };
 
   return (
-    <section className={styles.discovery}>
-      <Header title={t('corals')}>
+    <section className={styles.discovery} ref={ref}>
+      <Header title={t('corals')} refSection={ref}>
         <SearchBox onSubmit={handleSearch} onClear={handleOnClear} t={t} />
       </Header>
       {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}

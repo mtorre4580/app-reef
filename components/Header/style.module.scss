@@ -4,8 +4,20 @@
     font-family: 'Rubik', sans-serif;
     font-weight: 900;
     text-align: center;
-    background-color: #7e57c2;
     padding: 10px;
     color: #fff;
+    width: 100%;
+  }
+  .ctn {
+    display: flex;
+    justify-content: space-around;
+    background-color: #7e57c2;
+    height: 60px;
+    align-items: center;
+    .menuAction {
+      border: 0;
+      background-color: transparent;
+      margin-left: 20px;
+    }
   }
 }
