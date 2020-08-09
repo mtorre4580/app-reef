@@ -1,12 +1,24 @@
 import Head from 'next/head';
 import Router from 'next/router';
+import { useState } from 'react';
 import styles from '../styles/login.module.scss';
 import { Link, withTranslation } from '../i18n';
+import { login } from '../services/auth';
+import FormAuth from '../components/FormAuth';
+import Snackbar from '../components/Snackbar';
 
 function Login({ t }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    Router.push('/discovery');
+  const [showError, setShowError] = useState('');
+
+  const handleSubmit = async (user) => {
+    try {
+      await login(user);
+      Router.push('/discovery');
+    } catch (err) {
+      const status = (err.response && err.response.status) || 500;
+      const messageError = status === 500 ? t('error_login') : t('invalid_credentials');
+      setShowError(messageError);
+    }
   };
 
   return (
@@ -20,16 +32,13 @@ function Login({ t }) {
           <h1 className={styles.titleSection}>{t('reef_corals')}</h1>
           <p className={styles.titleSubtitle}>{t('enjoy_buy')}</p>
         </div>
-        <form className={styles.formLogin} onSubmit={handleSubmit}>
-          <input className={styles.form} type="email" placeholder="email" />
-          <input className={styles.form} type="password" placeholder="password" />
-          <button className={`${styles.form} ${styles.formBtn}`}>{t('login')}</button>
-        </form>
+        <FormAuth onSubmit={handleSubmit} t={t} />
         <div className={styles.register}>
           <Link href="/register">
             <a>{t('new_account')}</a>
           </Link>
         </div>
+        {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
       </section>
     </>
   );

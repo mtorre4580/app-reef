@@ -2,5 +2,7 @@
   "login": "Login",
   "reef_corals": "Reef Corals",
   "enjoy_buy": "Enjoy shopping from home",
-  "new_account": "New account"
+  "new_account": "New account",
+  "invalid_credentials": "Invalid credentials",
+  "error_login": "Error to login"
 }

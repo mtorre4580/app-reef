@@ -1,5 +1,5 @@
 import nextConnect from 'next-connect';
-import middleware from '../../../middleware/database';
+import middleware from '../../../middleware/middleware';
 import { AssertArrayItems, AssertItem } from '../../../validations/items';
 
 const handler = nextConnect();

@@ -1,7 +1,7 @@
 import nextConnect from 'next-connect';
-import middleware from '../../../middleware/database';
 import { ObjectID } from 'mongodb';
 import { AssertItem } from '../../../validations/items';
+import middleware from '../../../middleware/middleware';
 
 const handler = nextConnect();
 
