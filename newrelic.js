@@ -2,7 +2,7 @@
 
 exports.config = {
   app_name: ['reef-corals'],
-  license_key: '',
+  license_key: process.env.NEW_RELIC,
   distributed_tracing: {
     enabled: true,
   },

@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('newrelic');
 
 const { nextI18NextRewrites } = require('next-i18next/rewrites');
 const localeSubpaths = {};
@@ -13,5 +14,6 @@ module.exports = {
     DB_NAME: process.env.DB_NAME,
     NEXT_PUBLIC_BASE_URL: process.env.BASE_URL,
     NEXT_PUBLIC_API_KEY_MAPS: process.env.API_KEY_MAPS,
+    NEW_RELIC: process.env.NEW_RELIC,
   },
 };
