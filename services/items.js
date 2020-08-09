@@ -18,7 +18,7 @@ export async function filterByType(type) {
 }
 
 export async function search(q) {
-  const { data } = await axios.get(API_ITEMS, { params: { q } });
+  const { data } = await axios.get(API_ITEMS, { params: { q: q.trim() } });
   return data;
 }
 
