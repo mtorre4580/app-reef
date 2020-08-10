@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 
-export default function FormAuth({ onSubmit, t }) {
+export default function FormAuth({ onSubmit, actionTitle }) {
   const [user, setUser] = useState({ email: '', password: '' });
 
   const handleOnChange = (event) => {
@@ -34,7 +34,7 @@ export default function FormAuth({ onSubmit, t }) {
         onChange={handleOnChange}
         value={user.password}
       />
-      <button className={`${styles.form} ${styles.formBtn}`}>{t('login')}</button>
+      <button className={`${styles.form} ${styles.formBtn}`}>{actionTitle}</button>
     </form>
   );
 }

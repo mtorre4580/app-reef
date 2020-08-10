@@ -1,0 +1,6 @@
+{
+  "register": "Registrarse",
+  "description_register": "Al estar registrado podrás comprar de manera digital",
+  "error_register": "Se produjo un error al registrarse",
+  "email_already_use": "El email ya se encuentra registrado"
+}

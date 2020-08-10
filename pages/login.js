@@ -32,7 +32,7 @@ function Login({ t }) {
           <h1 className={styles.titleSection}>{t('reef_corals')}</h1>
           <p className={styles.titleSubtitle}>{t('enjoy_buy')}</p>
         </div>
-        <FormAuth onSubmit={handleSubmit} t={t} />
+        <FormAuth onSubmit={handleSubmit} actionTitle={t('login')} />
         <div className={styles.register}>
           <Link href="/register">
             <a>{t('new_account')}</a>
