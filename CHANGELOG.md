@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/mtorre4580/app-reef/compare/v0.1.4...v0.1.5) (2020-08-10)
+
+
+### Features
+
+* api users ([b9ba46d](https://github.com/mtorre4580/app-reef/commit/b9ba46d6a82bc9d5ae05c36cb6e9bc264aa1a999))
+* detail page ([d40b254](https://github.com/mtorre4580/app-reef/commit/d40b254c1de095073476054761b5aa0fec5fcfc5))
+* menu-drawer ([f62a2f0](https://github.com/mtorre4580/app-reef/commit/f62a2f0d2ad8595b5e82f57cd0bc5f4307d26be1))
+* user login ([d5e93d0](https://github.com/mtorre4580/app-reef/commit/d5e93d050d6671016419e18dbf8e2b98148798d4))
+
 ### [0.1.4](https://github.com/mtorre4580/app-reef/compare/v0.1.3...v0.1.4) (2020-08-08)
 
 
