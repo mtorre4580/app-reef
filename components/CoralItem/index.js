@@ -37,9 +37,9 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
         </a>
       </Link>
       {user && (
-        <button onClick={addToFavorite}>
-          {favorite && <IconFavoriteAdded className={styles.favorite} color="#9c27b0" />}
-          {!favorite && <IconFavorite className={styles.favorite} color="#9c27b0" />}
+        <button className={styles.favorite} onClick={addToFavorite}>
+          {favorite && <IconFavoriteAdded color="#9c27b0" />}
+          {!favorite && <IconFavorite color="#9c27b0" />}
         </button>
       )}
     </section>
