@@ -7,12 +7,12 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.post(passport.authenticate('local'), (req, res) => {
-  res.json({ user: { email: req.user.email } });
+  return res.json({ user: { email: req.user.email } });
 });
 
 handler.delete((req, res) => {
   req.logOut();
-  res.status(204).end();
+  return res.status(204).end();
 });
 
 export default handler;

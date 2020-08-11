@@ -22,12 +22,10 @@ handler.get(async (req, res) => {
 handler.post(async (req, res) => {
   const { password, email } = req.body;
   if (!email || !password) {
-    res.status(400).send('email and password are required');
-    return;
+    return res.status(400).send('email and password are required');
   }
   if ((await req.db.collection('users').countDocuments({ email })) > 0) {
-    res.status(403).send('The email has already been used.');
-    return;
+    return res.status(403).send('The email has already been used.');
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await req.db
@@ -42,7 +40,7 @@ handler.post(async (req, res) => {
       return null;
     }
 
-    res.status(201).json({
+    return res.status(201).json({
       user: retrieveInfo(req),
     });
   });

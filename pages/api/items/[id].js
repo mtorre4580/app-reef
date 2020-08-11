@@ -13,9 +13,9 @@ handler.get(async (req, res) => {
   } = req;
   try {
     const item = await req.db.collection('items').findOne({ _id: ObjectID(id) });
-    res.status(200).json(item);
+    return res.status(200).json(item);
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -25,9 +25,9 @@ handler.delete(async (req, res) => {
   } = req;
   try {
     await req.db.collection('items').deleteOne({ _id: ObjectID(id) });
-    res.status(200).json({ msg: 'Success' });
+    return res.status(200).json({ msg: 'Success' });
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -42,9 +42,9 @@ handler.put(async (req, res) => {
       return res.status(400).json({ error: error.details });
     }
     await req.db.collection('items').updateOne({ _id: ObjectID(id) }, { $set: { ...item } });
-    res.status(200).json({ msg: 'Success' });
+    return res.status(200).json({ msg: 'Success' });
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 

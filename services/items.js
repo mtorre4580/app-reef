@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_ITEMS = `https://reef-corals.vercel.app/api/items`;
+const API_ITEMS = `${process.env.API_URL}/items`;
 
 export async function getAll() {
   const { data } = await axios.get(API_ITEMS);

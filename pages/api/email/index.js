@@ -15,9 +15,9 @@ handler.post(async (req, res) => {
     //   text,
     // };
     // await sgMail.send(msg);
-    res.status(200).json({ msg: 'Mail send' });
+    return res.status(200).json({ msg: 'Mail send' });
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 

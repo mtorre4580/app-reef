@@ -14,9 +14,9 @@ handler.get(async (req, res) => {
   }
   try {
     const stores = await req.db.collection('stores').find(query).toArray();
-    res.status(200).json(stores);
+    return res.status(200).json(stores);
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -28,9 +28,9 @@ handler.post(async (req, res) => {
       return res.status(400).json({ error: error.details });
     }
     const { insertedId } = await req.db.collection('stores').insertOne(store);
-    res.status(200).json({ id: insertedId, msg: 'Success' });
+    return res.status(200).json({ id: insertedId, msg: 'Success' });
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
