@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, memo } from 'react';
 import Link from 'next/link';
 import styles from './style.module.scss';
+import { IconFavorite, IconFavoriteAdded } from '../Icons';
+import { useCurrentUser } from '../../hooks/useCurrentUser';
+import { addFavorite } from '../../services/favorites';
 
-export default function CoralItem({ item, style, isFilter, t }) {
+function CoralItem({ item, style = {}, isFilter, t }) {
+  const [user] = useCurrentUser();
+  const [favorite, setFavorite] = useState(item.isFavorite || false);
+
   if (isFilter) {
     return <div className={`${styles.box} ${styles.shine}`}></div>;
   }
+
+  const addToFavorite = async () => {
+    try {
+      setFavorite(!favorite);
+      await addFavorite(item._id);
+    } catch (err) {
+      setFavorite(!favorite);
+    }
+  };
 
   return (
     <section style={style} className={styles.row}>
@@ -26,6 +41,14 @@ export default function CoralItem({ item, style, isFilter, t }) {
           </article>
         </a>
       </Link>
+      {user && (
+        <button onClick={addToFavorite}>
+          {favorite && <IconFavoriteAdded className={styles.favorite} color="#9c27b0" />}
+          {!favorite && <IconFavorite className={styles.favorite} color="#9c27b0" />}
+        </button>
+      )}
     </section>
   );
 }
+
+export default memo(CoralItem);

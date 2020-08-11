@@ -40,11 +40,6 @@ export default function MenuDrawer({ show, refSection }) {
         <button className={styles.closebtn} onClick={handleClose}>
           &times;
         </button>
-        {user && (
-          <div>
-            <p>{user.email}</p>
-          </div>
-        )}
         <Link href="/home">
           <a>Inicio</a>
         </Link>
@@ -54,13 +49,15 @@ export default function MenuDrawer({ show, refSection }) {
         <Link href="/stores">
           <a>Locales</a>
         </Link>
-        <Link href="/favorites">
-          <a>Favoritos</a>
-        </Link>
         {user && (
-          <button className={styles.logout} onClick={handleLogout}>
-            <a>Salir</a>
-          </button>
+          <>
+            <Link href="/favorites">
+              <a>Favoritos</a>
+            </Link>
+            <button className={styles.logout} onClick={handleLogout}>
+              <a>Salir</a>
+            </button>
+          </>
         )}
         {!user && (
           <Link href="/login">

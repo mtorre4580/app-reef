@@ -1,8 +1,17 @@
 import nextConnect from 'next-connect';
 import middleware from '../../../middleware/middleware';
 import { AssertArrayItems, AssertItem } from '../../../validations/items';
+import { ObjectID } from 'mongodb';
 
 const handler = nextConnect();
+
+const applyFavoritesToUser = (items, user = {}) => {
+  const ids = Object.keys(user.favorites || {});
+  return items.map((item) => ({
+    ...item,
+    isFavorite: ids.includes(item._id.toString()),
+  }));
+};
 
 handler.use(middleware);
 
@@ -27,7 +36,7 @@ handler.get(async (req, res) => {
         offset: offsetInt,
         limit: limitInt,
       },
-      items,
+      items: applyFavoritesToUser(items, req.user),
     });
   } catch (err) {
     res.status(500).json({ msg: 'Unexpected Error', err });

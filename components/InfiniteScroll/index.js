@@ -6,7 +6,7 @@ import CoralItem from '../CoralItem';
 import Spinner from '../Spinner';
 import Shorcuts from '../Shorcuts';
 
-const SIZE_ITEM = 180;
+const SIZE_ITEM = 200;
 const PADDING_TOP = 100;
 
 const appendComponentToList = (onClick) => {
