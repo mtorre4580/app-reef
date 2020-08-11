@@ -12,7 +12,7 @@ handler.patch(async (req, res) => {
   } = req;
 
   if (!req.user) {
-    res.status(401).send('User is not logged in');
+    return res.status(401).send('User is not logged in');
   }
 
   const favorites = req.user.favorites || {};
@@ -21,28 +21,28 @@ handler.patch(async (req, res) => {
   if (favoritesIds.includes(id)) {
     try {
       delete favorites[id];
-      await req.db.collection('users').updateOne({ _id: req.user._id }, { $set: { favorites } });
-      res.status(200).end();
+      await req.db.collection('users').findOneAndUpdate({ _id: req.user._id }, { $set: { favorites } });
+      return res.status(200).end();
     } catch (err) {
-      res.status(500).json({ msg: 'Error occurred while deleting the favorite' });
+      return res.status(500).json({ msg: 'Error occurred while deleting the favorite' });
     }
   }
 
   try {
     const item = await req.db.collection('items').findOne({ _id: ObjectID(id) });
     if (!item) {
-      res.status(400).send('The item not exists');
+      return res.status(400).send('The item not exists');
     } else {
       try {
         favorites[id] = true;
         await req.db.collection('users').updateOne({ _id: req.user._id }, { $set: { favorites } });
-        res.status(200).end();
+        return res.status(200).end();
       } catch (err) {
-        res.status(500).json({ msg: 'Error occurred while adding the favorite' });
+        return res.status(500).json({ msg: 'Error occurred while adding the favorite' });
       }
     }
   } catch (err) {
-    res.status(500).send('The item not exists');
+    return res.status(500).send('The item not exists');
   }
 });
 

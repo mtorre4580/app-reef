@@ -22,7 +22,16 @@ const appendComponentToList = (onClick) => {
   );
 };
 
-export default function InfiniteScroll({ hasNextPage, isNextPageLoading, items, loadNextPage, onClick, isFilter, t }) {
+export default function InfiniteScroll({
+  hasNextPage,
+  isNextPageLoading,
+  items,
+  loadNextPage,
+  onClick,
+  isFilter,
+  t,
+  onAddFavorite,
+}) {
   const itemCount = hasNextPage ? items.length + 1 : items.length;
   const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
   const isItemLoaded = (index) => !hasNextPage || index < items.length;
@@ -32,7 +41,15 @@ export default function InfiniteScroll({ hasNextPage, isNextPageLoading, items, 
     if (!isItemLoaded(index)) {
       return <Spinner style={{ ...style, textAlign: 'center' }} />;
     }
-    return <CoralItem item={item} isFilter={isFilter} style={{ ...style, top: style.top + PADDING_TOP }} t={t} />;
+    return (
+      <CoralItem
+        item={item}
+        isFilter={isFilter}
+        style={{ ...style, top: style.top + PADDING_TOP }}
+        t={t}
+        onAddFavorite={onAddFavorite}
+      />
+    );
   };
 
   return (

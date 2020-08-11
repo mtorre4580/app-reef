@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { createRef } from 'react';
-import { getAll } from '../services/favorites';
+import { createRef, useState } from 'react';
+import { getAll, addFavorite } from '../services/favorites';
 import { withTranslation } from '../i18n';
 import Header from '../components/Header';
 import CoralItem from '../components/CoralItem';
@@ -8,6 +8,14 @@ import styles from '../styles/favorites.module.scss';
 
 function Favorites({ favorites = [], t }) {
   const ref = createRef();
+  const [items, setItems] = useState(favorites);
+
+  const handleFavorite = async (id) => {
+    try {
+      await addFavorite(id);
+      setItems(items.filter((item) => item._id !== id));
+    } catch (err) {}
+  };
 
   return (
     <>
@@ -17,10 +25,10 @@ function Favorites({ favorites = [], t }) {
       <section ref={ref}>
         <Header title={t('favorites')} refSection={ref} />
         <div>
-          {favorites.map((favorite) => (
-            <CoralItem key={favorite._id} item={favorite} t={t} />
+          {items.map((item) => (
+            <CoralItem key={item._id} item={item} t={t} onAddFavorite={handleFavorite} />
           ))}
-          {favorites.length === 0 && <p className={styles.noFavorites}>{t('no_favorites')}</p>}
+          {items.length === 0 && <p className={styles.noFavorites}>{t('no_favorites')}</p>}
         </div>
       </section>
     </>

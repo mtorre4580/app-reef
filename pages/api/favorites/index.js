@@ -8,8 +8,7 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
   if (!req.user) {
-    res.status(401).send('User is not logged in');
-    return;
+    return res.status(401).send('User is not logged in');
   }
   try {
     const ids = Object.keys(req.user.favorites || {}).map((_id) => ObjectID(_id));
@@ -18,9 +17,9 @@ handler.get(async (req, res) => {
       .find({ _id: { $in: ids } })
       .toArray();
     const favorites = items.map((fav) => ({ ...fav, isFavorite: true }));
-    res.status(200).json(favorites);
+    return res.status(200).json(favorites);
   } catch (err) {
-    res.status(500).json({ msg: 'An error occurred while getting user favorites' });
+    return res.status(500).json({ msg: 'An error occurred while getting user favorites' });
   }
 });
 

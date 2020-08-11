@@ -1,6 +1,7 @@
 import styles from '../styles/discovery.module.scss';
 import { useState, createRef } from 'react';
 import { getAll, getMore, filterByType, search } from '../services/items';
+import { addFavorite } from '../services/favorites';
 import { withTranslation } from '../i18n';
 import InfiniteScroll from '../components/InfiniteScroll';
 import SearchBox from '../components/SearchBox';
@@ -69,6 +70,12 @@ function Discovery({ items, paging, t }) {
     }
   };
 
+  const handleFavorite = async (id) => {
+    try {
+      await addFavorite(id);
+    } catch (err) {}
+  };
+
   return (
     <section className={styles.discovery} ref={ref}>
       <Header title={t('corals')} refSection={ref}>
@@ -82,6 +89,7 @@ function Discovery({ items, paging, t }) {
           items={state.items}
           loadNextPage={loadNextPage}
           onClick={applyFilter}
+          onAddFavorite={handleFavorite}
           isFilter={state.isFilter}
           t={t}
         />

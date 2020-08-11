@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_AUTH = `https://reef-corals.vercel.app/api/users`;
+const API_AUTH = `${process.env.API_URL}/users`;
 
 export async function create(user) {
   const { data } = await axios.post(API_AUTH, user);

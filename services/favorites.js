@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_FAVORITES = `https://reef-corals.vercel.app/api/favorites`;
+const API_FAVORITES = `${process.env.API_URL}/favorites`;
 
 export async function addFavorite(id) {
   const { data } = await axios.patch(`${API_FAVORITES}/${id}`);

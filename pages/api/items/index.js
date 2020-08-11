@@ -30,7 +30,7 @@ handler.get(async (req, res) => {
     const cursor = req.db.collection('items').find(query).skip(offsetInt).limit(limitInt);
     const total = await cursor.count();
     const items = await cursor.toArray();
-    res.json({
+    return res.json({
       paging: {
         total,
         offset: offsetInt,
@@ -39,7 +39,7 @@ handler.get(async (req, res) => {
       items: applyFavoritesToUser(items, req.user),
     });
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 
@@ -53,13 +53,13 @@ handler.post(async (req, res) => {
     }
     if (isLot) {
       await req.db.collection('items').insertMany(item);
-      res.status(200).json({ msg: 'Success' });
+      return res.status(200).json({ msg: 'Success' });
     } else {
       const { insertedId } = await req.db.collection('items').insertOne(item);
-      res.status(200).json({ id: insertedId, msg: 'Success' });
+      return res.status(200).json({ id: insertedId, msg: 'Success' });
     }
   } catch (err) {
-    res.status(500).json({ msg: 'Unexpected Error', err });
+    return res.status(500).json({ msg: 'Unexpected Error', err });
   }
 });
 

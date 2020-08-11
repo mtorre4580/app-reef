@@ -3,9 +3,8 @@ import Link from 'next/link';
 import styles from './style.module.scss';
 import { IconFavorite, IconFavoriteAdded } from '../Icons';
 import { useCurrentUser } from '../../hooks/useCurrentUser';
-import { addFavorite } from '../../services/favorites';
 
-function CoralItem({ item, style = {}, isFilter, t }) {
+function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
   const [user] = useCurrentUser();
   const [favorite, setFavorite] = useState(item.isFavorite || false);
 
@@ -13,13 +12,9 @@ function CoralItem({ item, style = {}, isFilter, t }) {
     return <div className={`${styles.box} ${styles.shine}`}></div>;
   }
 
-  const addToFavorite = async () => {
-    try {
-      setFavorite(!favorite);
-      await addFavorite(item._id);
-    } catch (err) {
-      setFavorite(!favorite);
-    }
+  const addToFavorite = () => {
+    setFavorite(!favorite);
+    onAddFavorite(item._id);
   };
 
   return (
