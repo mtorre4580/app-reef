@@ -54,6 +54,9 @@ export default function MenuDrawer({ show, refSection }) {
             <Link href="/favorites">
               <a>Favoritos</a>
             </Link>
+            <Link href="/aquarium">
+              <a>Mi acuario</a>
+            </Link>
             <button className={styles.logout} onClick={handleLogout}>
               <a>Salir</a>
             </button>
