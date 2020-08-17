@@ -18,6 +18,9 @@
       border: 0;
       background-color: transparent;
       margin-left: 20px;
+      &:hover  {
+        cursor: pointer;
+      }
     }
   }
 }

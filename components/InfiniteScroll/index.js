@@ -6,7 +6,7 @@ import CoralItem from '../CoralItem';
 import Spinner from '../Spinner';
 import Shorcuts from '../Shorcuts';
 
-const SIZE_ITEM = 200;
+const SIZE_ITEM = 180;
 const PADDING_TOP = 100;
 
 const appendComponentToList = (onClick) => {
@@ -45,7 +45,7 @@ export default function InfiniteScroll({
       <CoralItem
         item={item}
         isFilter={isFilter}
-        style={{ ...style, top: style.top + PADDING_TOP }}
+        style={{ ...style, top: style.top + PADDING_TOP, height: style.height - 10 }}
         t={t}
         onAddFavorite={onAddFavorite}
       />

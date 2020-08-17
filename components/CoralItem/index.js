@@ -18,7 +18,7 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
   };
 
   return (
-    <section style={style} className={styles.row}>
+    <div style={style} className={styles.row}>
       <Link href={`/detail/${item._id}`}>
         <a>
           <article className={styles.item} key={item._id}>
@@ -42,7 +42,7 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
           {!favorite && <IconFavorite color="#9c27b0" />}
         </button>
       )}
-    </section>
+    </div>
   );
 }
 

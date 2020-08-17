@@ -1,0 +1,28 @@
+.listParameters {
+  padding: 20px;
+  list-style: none;
+  .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    margin: 10px 0;
+    &:hover {
+      cursor: pointer;
+      background-color: #7e57c2;
+      color: #fff;
+      opacity: 0.7;
+    }
+    .value {
+      font-weight: 700;
+      color: #212121;
+      text-transform: capitalize;
+    }
+  }
+}
+.hint {
+  text-align: center;
+  color: #777;
+  padding: 10px;
+}
