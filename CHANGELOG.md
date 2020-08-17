@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/mtorre4580/app-reef/compare/v0.1.5...v0.1.6) (2020-08-17)
+
+
+### Features
+
+* aquarium ([8ddd7aa](https://github.com/mtorre4580/app-reef/commit/8ddd7aa2a67456b62560592a205ffa944c3aa11a))
+* custom pages for 404 and error ([7791216](https://github.com/mtorre4580/app-reef/commit/77912168697b14a27a2e9fdcf8486e2d081ec884))
+* favorites ([f008600](https://github.com/mtorre4580/app-reef/commit/f0086009684d38b319912ad713e276a4d6d6972a))
+
 ### [0.1.5](https://github.com/mtorre4580/app-reef/compare/v0.1.4...v0.1.5) (2020-08-10)
 
 
