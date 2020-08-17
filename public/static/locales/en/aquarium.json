@@ -1,3 +1,8 @@
 {
-  "aquarium": "My aquarium"
+  "aquarium": "My aquarium",
+  "empty_parameters": "You haven't loaded your parameters yet",
+  "error_update_parameter": "Error updating parameter",
+  "error_register_aquarium": "Aquarium registration failed",
+  "cancel": "Cancel",
+  "accept": "Confirm"
 }
