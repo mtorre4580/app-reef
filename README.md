@@ -11,17 +11,58 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+## Build
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run release
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+## Views
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Discovery
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Shows corals registered for sale (React-Window)
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/discovery/mobile/discovery_mobile.png" />
+</div>
+
+### Favorites
+
+It allows to see the user's favorites, they are stored in (MongoDB)
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/favorites/mobile/favorites_mobile.png" />
+</div>
+
+### Stores
+
+Allows you to search for nearby aquariums where the current user is
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/stores/mobile/stores_mobile_map.png" />
+</div>
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/stores/mobile/stores_mobile_map_list.png" />
+</div>
+
+### Aquarium
+
+It allows to have a record of the aquarium parameters, Show the differences in a graph (Rechart)
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/aquarium/mobile/aquarium_mobile.png" />
+</div>
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/aquarium/mobile/aquarium_mobile_metrics.png" />
+</div>
+
+<div style="text-align:left;margin:auto">
+    <img src="https://github.com/mtorre4580/app-reef/blob/master/docs/views/aquarium/mobile/aquarium_mobile_edit_param.png" />
+</div>
