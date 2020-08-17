@@ -9,14 +9,14 @@ export default function Header({ title, children, refSection, showDrawer = true 
 
   return (
     <header className={styles.header}>
-      <div className={styles.ctn}>
+      <nav className={styles.ctn}>
         {showDrawer && (
           <button className={styles.menuAction} onClick={handleDrawer}>
             <IconMenu />
           </button>
         )}
         <h1 className={styles.title}>{title}</h1>
-      </div>
+      </nav>
       {children}
       {showDrawer && <MenuDrawer show={show} refSection={refSection} />}
     </header>

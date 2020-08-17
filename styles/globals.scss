@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap');
 @import '~@brainhubeu/react-carousel/lib/style.css';
+
+a,
+p {
+  font-family: 'Baloo Tamma 2', cursive;
+}
 
 html,
 body {

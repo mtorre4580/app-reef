@@ -5,9 +5,9 @@
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: #424242;
+  background-color: #0f4c75;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.4s;
   padding-top: 60px;
 }
 
@@ -19,6 +19,8 @@
     color: #fff;
     display: block;
     transition: 0.3s;
+    font-family: 'Rubik', sans-serif;
+    width: 200px;
     &:hover {
       text-decoration: underline;
     }
@@ -32,6 +34,7 @@
     background: transparent;
     color: #fff;
     border: 0;
+    outline: none;
     &:hover {
       cursor: pointer;
     }
@@ -39,6 +42,8 @@
   .logout {
     border: 0;
     background-color: transparent;
+    width: 200px;
+    text-align: left;
   }
 }
 

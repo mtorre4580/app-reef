@@ -6,7 +6,7 @@
 
   .type {
     margin: auto;
-    background-color: #7e57c2;
+    background-color: #3282b8;
     color: #fff;
     width: 50px;
     display: flex;
@@ -15,6 +15,16 @@
     border-radius: 50%;
     border: 0;
     height: 50px;
+    outline: none;
+
+    &.active {
+      background-color: #ddd;
+      color: #212121;
+    }
+    &.inactive {
+      background-color: #3282b8;
+      color: #fff;
+    }
 
     &:hover {
       cursor: pointer;
@@ -22,7 +32,7 @@
 
     .filter {
       font-size: 14px;
-      font-family: 'Rubik', sans-serif;
+      font-family: 'Baloo Tamma 2', cursive;
     }
   }
 }

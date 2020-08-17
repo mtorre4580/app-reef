@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import styles from './style.module.scss';
 
 const STYLE_IMG = { width: '100%', height: '300px' };
 
@@ -10,9 +11,9 @@ export default function CarouselImages({ imgs, img }) {
   const handleOnChange = (index) => setIndex(index);
 
   return (
-    <>
+    <section className={styles.ctnImg}>
       <Carousel value={index} slides={slides} onChange={handleOnChange} />
       <Dots value={index} onChange={handleOnChange} number={slides.length} />
-    </>
+    </section>
   );
 }

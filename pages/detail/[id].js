@@ -14,25 +14,27 @@ function Detail({ t, item }) {
         <title>{t('detail')}</title>
       </Head>
       <Header title={t('detail')} refSection={ref} />
-      <CarouselImages imgs={item.imgs} img={item.img} />
-      <div style={{ padding: '20px' }}>
-        <div>
-          <h2 className={styles.titleCoral}>{item.title}</h2>
-          <p>{item.description}</p>
-        </div>
-        <div className={styles.detailCoral}>
-          <h2 className={styles.title}>{t('price')}</h2>
-          <p className={styles.price}>
-            {item.price.coin}
-            {item.price.value}
-          </p>
-        </div>
-        <div className={styles.detailCoral}>
-          <h2 className={styles.title}>{t('size')}</h2>
-          <p>{item.size}</p>
-        </div>
-        <div className={styles.actions}>
-          <button className={styles.btn}>{t('buy')}</button>
+      <div className={styles.ctn}>
+        <CarouselImages imgs={item.imgs} img={item.img} />
+        <div className={styles.ctnDescription}>
+          <div>
+            <h2 className={styles.titleCoral}>{item.title}</h2>
+            <p>{item.description}</p>
+          </div>
+          <div className={styles.detailCoral}>
+            <h2 className={styles.title}>{t('price')}</h2>
+            <p className={styles.price}>
+              {item.price.coin}
+              {item.price.value}
+            </p>
+          </div>
+          <div className={styles.detailCoral}>
+            <h2 className={styles.title}>{t('size')}</h2>
+            <p>{item.size}</p>
+          </div>
+          <div className={styles.actions}>
+            <button className={styles.btn}>{t('buy')}</button>
+          </div>
         </div>
       </div>
     </section>

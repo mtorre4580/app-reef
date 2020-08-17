@@ -3,11 +3,7 @@ import styles from './style.module.scss';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { getClosest } from '../../services/stores';
 import { usePosition } from '../../hooks/usePosition';
-
-const STYLE_MAP = {
-  width: '100%',
-  height: 'calc(100% - 136px)',
-};
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 const LANGUAGE_MAP = 'es-AR';
 
@@ -19,7 +15,12 @@ function LoadingContainer() {
 
 function StoresMap({ google, showMap, t }) {
   const { latitude, longitude, error } = usePosition(true);
+  const { width } = useWindowSize();
   const [stores, setStores] = useState([]);
+  const styleMap = {
+    width: '100%',
+    height: width > 681 ? 'calc(100% - 102px)' : 'calc(100% - 132px)',
+  };
 
   const fetchResults = async () => {
     const results = await getClosest(latitude, longitude);
@@ -51,7 +52,7 @@ function StoresMap({ google, showMap, t }) {
       <Map
         google={google}
         zoom={14}
-        style={{ ...STYLE_MAP, visibility: showMap ? 'visible' : 'hidden' }}
+        style={{ ...styleMap, visibility: showMap ? 'visible' : 'hidden' }}
         initialCenter={{ lat: latitude, lng: longitude }}
         onClick={onMapClicked}
       >

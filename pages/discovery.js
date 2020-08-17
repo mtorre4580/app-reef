@@ -7,8 +7,10 @@ import InfiniteScroll from '../components/InfiniteScroll';
 import SearchBox from '../components/SearchBox';
 import Header from '../components/Header';
 import Snackbar from '../components/Snackbar';
+import { useWindowSize } from '../hooks/useWindowSize';
 
 function Discovery({ items, paging, t }) {
+  const { width } = useWindowSize();
   const ref = createRef();
   const [showError, setShowError] = useState('');
   const [state, setState] = useState({
@@ -19,6 +21,7 @@ function Discovery({ items, paging, t }) {
     isNextPageLoading: false,
     items,
     isFilter: false,
+    filterApplied: null,
   });
 
   const loadNextPage = async () => {
@@ -44,7 +47,14 @@ function Discovery({ items, paging, t }) {
     try {
       setState({ ...state, isFilter: true });
       const response = await filterByType(type);
-      setState({ ...state, items: response.items, offset: 0, total: response.paging.total, isNextPageLoading: false });
+      setState({
+        ...state,
+        items: response.items,
+        offset: 0,
+        total: response.paging.total,
+        isNextPageLoading: false,
+        filterApplied: type,
+      });
     } catch (err) {
       setShowError(t('error_filter'));
     }
@@ -91,7 +101,9 @@ function Discovery({ items, paging, t }) {
           onClick={applyFilter}
           onAddFavorite={handleFavorite}
           isFilter={state.isFilter}
+          filterApplied={state.filterApplied}
           t={t}
+          width={width}
         />
       </section>
     </section>

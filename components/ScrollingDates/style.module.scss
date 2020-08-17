@@ -18,8 +18,10 @@
     text-align: center;
     margin: 10px;
     color: #fff;
+    font-family: 'Baloo Tamma 2', cursive;
+
     &.active {
-      background-color: #7e57c2;
+      background-color: #3282b8;
       color: #fff;
     }
     &.inactive {

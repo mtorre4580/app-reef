@@ -2,7 +2,7 @@
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;
-  background-color: #ef5350;
+  background-color: #ff5722;
   color: #fff;
   text-align: center;
   border-radius: 20px;
@@ -11,6 +11,7 @@
   z-index: 1;
   left: 50%;
   bottom: 30px;
+  font-family: 'Baloo Tamma 2', cursive;
 
   &.show {
     visibility: visible;

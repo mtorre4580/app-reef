@@ -6,17 +6,14 @@ import CoralItem from '../CoralItem';
 import Spinner from '../Spinner';
 import Shorcuts from '../Shorcuts';
 
-const SIZE_ITEM = 180;
-const PADDING_TOP = 100;
-
-const appendComponentToList = (onClick) => {
+const appendComponentToList = (onClick, filterApplied) => {
   return React.memo(
     React.forwardRef(({ style, children, ...othersProps }, ref) => {
       return (
-        <section ref={ref} style={style} {...othersProps}>
-          <Shorcuts onClick={onClick} />
+        <ol ref={ref} style={style} {...othersProps}>
+          <Shorcuts onClick={onClick} filterApplied={filterApplied} />
           {children}
-        </section>
+        </ol>
       );
     }),
   );
@@ -31,11 +28,16 @@ export default function InfiniteScroll({
   isFilter,
   t,
   onAddFavorite,
+  filterApplied,
+  width,
 }) {
   const itemCount = hasNextPage ? items.length + 1 : items.length;
   const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
   const isItemLoaded = (index) => !hasNextPage || index < items.length;
-  const innerElementType = appendComponentToList(onClick);
+  const innerElementType = appendComponentToList(onClick, filterApplied);
+  const sizeItem = width > 681 ? 180 : 160;
+  const paddingTop = 100;
+
   const Row = ({ index, style }) => {
     let item = items[index];
     if (!isItemLoaded(index)) {
@@ -45,7 +47,7 @@ export default function InfiniteScroll({
       <CoralItem
         item={item}
         isFilter={isFilter}
-        style={{ ...style, top: style.top + PADDING_TOP, height: style.height - 10 }}
+        style={{ ...style, top: style.top + paddingTop, height: style.height - 10 }}
         t={t}
         onAddFavorite={onAddFavorite}
       />
@@ -60,7 +62,7 @@ export default function InfiniteScroll({
             {({ onItemsRendered, ref }) => (
               <List
                 itemCount={itemCount}
-                itemSize={SIZE_ITEM}
+                itemSize={sizeItem}
                 onItemsRendered={onItemsRendered}
                 ref={ref}
                 height={height}

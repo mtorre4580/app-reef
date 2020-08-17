@@ -24,12 +24,12 @@ function Favorites({ favorites = [], t }) {
       </Head>
       <section ref={ref}>
         <Header title={t('favorites')} refSection={ref} />
-        <div>
+        <ol>
           {items.map((item) => (
             <CoralItem key={item._id} item={item} t={t} onAddFavorite={handleFavorite} />
           ))}
-          {items.length === 0 && <p className={styles.noFavorites}>{t('no_favorites')}</p>}
-        </div>
+        </ol>
+        {items.length === 0 && <p className={styles.noFavorites}>{t('no_favorites')}</p>}
       </section>
     </>
   );

@@ -12,11 +12,9 @@ export default function ListParameters({ parameters, onClick }) {
       <ol className={styles.listParameters}>
         {Object.keys(parameters).map((param) => {
           return (
-            <li key={param} onClick={() => handleOnClick(param, parameters[param])}>
-              <div className={styles.item}>
-                <p className={styles.value}>{param}</p>
-                <div>{parameters[param]}</div>
-              </div>
+            <li className={styles.item} key={param} onClick={() => handleOnClick(param, parameters[param])}>
+              <p className={styles.value}>{param}</p>
+              <div className={styles.cant}>{parameters[param]}</div>
             </li>
           );
         })}

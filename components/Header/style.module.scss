@@ -11,16 +11,15 @@
   .ctn {
     display: flex;
     justify-content: space-around;
-    background-color: #7e57c2;
+    background-color: #0f4c75;
     height: 60px;
     align-items: center;
     .menuAction {
       border: 0;
       background-color: transparent;
       margin-left: 20px;
-      &:hover  {
-        cursor: pointer;
-      }
+      outline: none;
+      cursor: pointer;
     }
   }
 }

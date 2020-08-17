@@ -10,14 +10,18 @@
     margin: 10px 0;
     &:hover {
       cursor: pointer;
-      background-color: #7e57c2;
+      background-color: #3282b8;
       color: #fff;
-      opacity: 0.7;
     }
     .value {
       font-weight: 700;
       color: #212121;
       text-transform: capitalize;
+      margin: 0 10px;
+    }
+    .cant {
+      font-family: 'Baloo Tamma 2', cursive;
+      margin: 0 10px;
     }
   }
 }

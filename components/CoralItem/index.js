@@ -18,7 +18,7 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
   };
 
   return (
-    <div style={style} className={styles.row}>
+    <li style={style} className={styles.row}>
       <Link href={`/detail/${item._id}`}>
         <a>
           <article className={styles.item} key={item._id}>
@@ -38,11 +38,11 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
       </Link>
       {user && (
         <button className={styles.favorite} onClick={addToFavorite}>
-          {favorite && <IconFavoriteAdded color="#9c27b0" />}
-          {!favorite && <IconFavorite color="#9c27b0" />}
+          {favorite && <IconFavoriteAdded color="#3282b8" />}
+          {!favorite && <IconFavorite color="#3282b8" />}
         </button>
       )}
-    </div>
+    </li>
   );
 }
 

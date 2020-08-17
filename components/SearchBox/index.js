@@ -14,7 +14,7 @@ export default function SearchBox({ onSubmit, onClear, t }) {
   };
 
   return (
-    <nav className={styles.searchBox}>
+    <section className={styles.searchBox}>
       <form onSubmit={handleSubmit}>
         <input
           type="search"
@@ -29,6 +29,6 @@ export default function SearchBox({ onSubmit, onClear, t }) {
           {t('cancel')}
         </button>
       )}
-    </nav>
+    </section>
   );
 }
