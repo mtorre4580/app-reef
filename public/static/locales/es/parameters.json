@@ -1,0 +1,10 @@
+{
+  "parameters": "Parámetros",
+  "pick_date": "Seleccioná una fecha",
+  "pick_params": "Seleccioná los parámetros",
+  "empty_params": "No has seleccionado ningún parámetro",
+  "cancel": "Cancelar",
+  "accept": "Aceptar",
+  "error_register_params": "Error al registrar los parámetros",
+  "confirm_param": "¿Quieres seguir cargando parametros o ya seleccionaste todos?"
+}

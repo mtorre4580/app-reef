@@ -13,7 +13,7 @@ function Detail({ t, item }) {
       <Head>
         <title>{t('detail')}</title>
       </Head>
-      <Header title={t('detail')} refSection={ref} />
+      <Header title={t('detail')} refSection={ref} showDrawer={false} showBack={{ path: '/discovery' }} />
       <div className={styles.ctn}>
         <CarouselImages imgs={item.imgs} img={item.img} />
         <div className={styles.ctnDescription}>

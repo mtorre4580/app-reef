@@ -10,14 +10,16 @@ export default function ListParameters({ parameters, onClick }) {
     <>
       <p className={styles.hint}>Puedes modificar el valor si haces tap en la medición</p>
       <ol className={styles.listParameters}>
-        {Object.keys(parameters).map((param) => {
-          return (
-            <li className={styles.item} key={param} onClick={() => handleOnClick(param, parameters[param])}>
-              <p className={styles.value}>{param}</p>
-              <div className={styles.cant}>{parameters[param]}</div>
-            </li>
-          );
-        })}
+        {Object.keys(parameters)
+          .filter((param) => parameters[param] !== null)
+          .map((param) => {
+            return (
+              <li className={styles.item} key={param} onClick={() => handleOnClick(param, parameters[param])}>
+                <p className={styles.value}>{param}</p>
+                <div className={styles.cant}>{parameters[param]}</div>
+              </li>
+            );
+          })}
       </ol>
     </>
   );

@@ -24,7 +24,7 @@ function Favorites({ favorites = [], t }) {
       </Head>
       <section ref={ref}>
         <Header title={t('favorites')} refSection={ref} />
-        <ol>
+        <ol className={styles.listFavorites}>
           {items.map((item) => (
             <CoralItem key={item._id} item={item} t={t} onAddFavorite={handleFavorite} />
           ))}

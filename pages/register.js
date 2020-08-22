@@ -27,10 +27,12 @@ function Register({ t }) {
         <title>{t('register')}</title>
       </Head>
       <section className={styles.register}>
-        <Header title={t('register')} showDrawer={false} />
-        <p className={styles.description}>{t('description_register')}</p>
-        <FormAuth onSubmit={handleSubmit} actionTitle={t('register')} />
-        {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
+        <Header title={t('register')} showDrawer={false} showBack={{ path: '/login' }} />
+        <div className={styles.ctn}>
+          <p className={styles.description}>{t('description_register')}</p>
+          <FormAuth onSubmit={handleSubmit} actionTitle={t('register')} />
+          {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
+        </div>
       </section>
     </>
   );

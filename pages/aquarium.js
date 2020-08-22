@@ -9,7 +9,7 @@ import ListParameters from '../components/ListParameters';
 import FormEditParam from '../components/FormEditParam';
 import Snackbar from '../components/Snackbar';
 import FloatButton from '../components/FloatButton';
-import ScrollingDates from '../components/ScrollingDates';
+import Scrolling from '../components/Scrolling';
 import Metrics from '../components/Metrics';
 
 function Aquarium({ t, _id, name, type, parameters }) {
@@ -53,34 +53,36 @@ function Aquarium({ t, _id, name, type, parameters }) {
   return (
     <section className={styles.aquarium} ref={ref}>
       <Header title={t('aquarium')} refSection={ref} />
-      {!hasAquarium && <FormAquarium onSubmit={handleSubmitRegister} />}
-      {!editParam && hasAquarium && (
-        <>
-          {lastMeasure && (
-            <>
-              <ScrollingDates parameters={parameters} onClick={handleOnClickDate} selected={lastMeasure} />
-              <h3 className={styles.measure}>Medición: {lastMeasure}</h3>
-              <ListParameters parameters={parametersUser} onClick={handleEditParameter} />
-              <Metrics parameters={parameters} />
-            </>
-          )}
-          {!lastMeasure && <p className={styles.title}>{t('empty_parameters')}</p>}
-        </>
-      )}
-      {editParam && hasAquarium && (
-        <FormEditParam
-          t={t}
-          parameter={editParam}
-          onCancel={() => setEditParam(null)}
-          onClick={handleUpdateParameter}
-        />
-      )}
-      {hasAquarium && (
-        <FloatButton path="/parameters">
-          <IconAdd className={styles.add} />
-        </FloatButton>
-      )}
-      {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
+      <div className={styles.ctn}>
+        {!hasAquarium && <FormAquarium onSubmit={handleSubmitRegister} />}
+        {!editParam && hasAquarium && (
+          <>
+            {lastMeasure && (
+              <>
+                <Scrolling parameters={parameters} onClick={handleOnClickDate} selected={lastMeasure} />
+                <h3 className={styles.measure}>Medición: {lastMeasure}</h3>
+                <ListParameters parameters={parametersUser} onClick={handleEditParameter} />
+                <Metrics parameters={parameters} />
+              </>
+            )}
+            {!lastMeasure && <p className={styles.title}>{t('empty_parameters')}</p>}
+          </>
+        )}
+        {editParam && hasAquarium && (
+          <FormEditParam
+            t={t}
+            parameter={editParam}
+            onCancel={() => setEditParam(null)}
+            onClick={handleUpdateParameter}
+          />
+        )}
+        {hasAquarium && (
+          <FloatButton path="/parameters">
+            <IconAdd className={styles.add} />
+          </FloatButton>
+        )}
+        {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
+      </div>
     </section>
   );
 }

@@ -1,0 +1,89 @@
+.ctn {
+  padding: 20px;
+  text-align: center;
+  padding-top: 60px;
+
+  @media (min-width: 681px) {
+    width: 50%;
+    margin: auto;
+  }
+
+  .titleForm {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  .datePicker {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0;
+    background-color: #f5f5f5;
+    .react-datepicker-wrapper {
+      display: block !important;
+    }
+  }
+
+  .emptyForm {
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .ctnActions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .ctnForm {
+      width: 100%;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+
+        .labelInputParam {
+          font-family: 'Baloo Tamma 2', cursive;
+          text-transform: uppercase;
+          font-weight: 700;
+        }
+        .btnCancel {
+          border: 0;
+          outline: none;
+          background-color: transparent;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .inputParam {
+        padding: 10px;
+        border-radius: 20px;
+        border: 0;
+        background-color: #f5f5f5;
+        width: 100%;
+      }
+    }
+  }
+
+  .btn {
+    border-radius: 20px;
+    background-color: #3282b8;
+    color: #fff;
+    font-weight: 700;
+    border: 0;
+    padding: 10px 20px;
+    outline: none;
+    font-family: 'Baloo Tamma 2', cursive;
+    margin: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -9,7 +9,11 @@ function CoralItem({ item, style = {}, isFilter, t, onAddFavorite }) {
   const [favorite, setFavorite] = useState(item.isFavorite || false);
 
   if (isFilter) {
-    return <div className={`${styles.box} ${styles.shine}`}></div>;
+    return (
+      <div className={`${styles.box} ${styles.shine}`}>
+        <div className={styles.imgSkeleton}></div>
+      </div>
+    );
   }
 
   const addToFavorite = () => {

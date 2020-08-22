@@ -13,7 +13,9 @@ export default function MenuDrawer({ show, refSection }) {
 
   const handleClose = () => {
     ref.current.style.width = '0';
-    refSection.current.style.marginLeft = '0';
+    if (refSection && refSection.current) {
+      refSection.current.style.marginLeft = '0';
+    }
   };
 
   const handleLogout = async () => {

@@ -1,0 +1,10 @@
+{
+  "parameters": "Parameters",
+  "pick_date": "Pick date",
+  "pick_params": "Pick params",
+  "empty_params": "Empty params",
+  "cancel": "Cancel",
+  "accept": "Accept",
+  "error_register_params": "Error trying to register params",
+  "confirm_param": "Do you want to continue loading parameters or have you already selected all of them?"
+}

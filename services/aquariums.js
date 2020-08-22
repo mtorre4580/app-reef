@@ -7,6 +7,11 @@ export async function getAquarium() {
   return data;
 }
 
+export async function registerParameters(idAquarium, date, parameters) {
+  const { data } = await axios.patch(`${API_AQUARIUMS}/${idAquarium}/${date}`, parameters);
+  return data;
+}
+
 export async function updateParameter(idAquarium, date, parameter) {
   const info = { [parameter.type]: parseFloat(parameter.value) };
   const { data } = await axios.patch(`${API_AQUARIUMS}/${idAquarium}/${date}`, info);

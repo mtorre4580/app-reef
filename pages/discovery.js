@@ -88,7 +88,7 @@ function Discovery({ items, paging, t }) {
 
   return (
     <section className={styles.discovery} ref={ref}>
-      <Header title={t('corals')} refSection={ref}>
+      <Header title={t('corals')} refSection={ref} fixed={false}>
         <SearchBox onSubmit={handleSearch} onClear={handleOnClear} t={t} />
       </Header>
       {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}

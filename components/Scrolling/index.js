@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.module.scss';
 
-export default function ScrollingDates({ parameters, onClick, selected }) {
+export default function Scrolling({ parameters, onClick, selected }) {
   return (
     <nav className={styles.scrolling}>
       {Object.keys(parameters).map((param) => {

@@ -19,7 +19,8 @@ function StoresMap({ google, showMap, t }) {
   const [stores, setStores] = useState([]);
   const styleMap = {
     width: '100%',
-    height: width > 681 ? 'calc(100% - 102px)' : 'calc(100% - 132px)',
+    height: width > 681 ? 'calc(100% - 106px)' : 'calc(100% - 132px)',
+    marginTop: width > 681 ? '106px' : '132px',
   };
 
   const fetchResults = async () => {
