@@ -6,7 +6,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: #0f4c75;
+  background-color: #fff;
 
   .content {
     height: 60%;
@@ -23,21 +23,21 @@
 
   .titleSection {
     font-family: 'Rubik', sans-serif;
-    color: $color-white;
+    color: #212121;
     text-align: center;
     padding: $padding 0;
     font-size: $font-size-title;
   }
 
   .titleSubtitle {
-    color: $color-grey;
+    color: #212121;
     text-align: center;
     margin-bottom: 20px;
   }
 
   .register {
     height: 10%;
-    color: $color-white;
+    color: #212121;
   }
 
   @media (min-width: $breakpoint-desktop) {

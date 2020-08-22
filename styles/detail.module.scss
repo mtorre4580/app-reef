@@ -1,8 +1,9 @@
 .detail {
-  background-color: #f5f5f5;
+  background-color: #fff;
   height: 100%;
 
   .ctn {
+    padding-top: 60px;
     @media (min-width: 681px) {
       display: flex;
       justify-content: space-between;
@@ -28,7 +29,7 @@
     .price {
       font-size: 20px;
       font-weight: 700;
-      color: #3282b8;
+      color: #3586ff;
     }
   }
 
@@ -43,7 +44,7 @@
     justify-content: space-around;
     .btn {
       border-radius: 20px;
-      background-color: #3282b8;
+      background-color: #3586ff;
       font-family: 'Baloo Tamma 2', cursive;
       color: #fff;
       font-weight: 600;

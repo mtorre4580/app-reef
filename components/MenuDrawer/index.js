@@ -12,7 +12,9 @@ export default function MenuDrawer({ show, refSection }) {
   const [user, { mutate }] = useCurrentUser();
 
   const handleClose = () => {
-    ref.current.style.width = '0';
+    if (ref.current && ref.current.style) {
+      ref.current.style.width = '0';
+    }
     if (refSection && refSection.current) {
       refSection.current.style.marginLeft = '0';
     }
@@ -42,9 +44,6 @@ export default function MenuDrawer({ show, refSection }) {
         <button className={styles.closebtn} onClick={handleClose}>
           &times;
         </button>
-        <Link href="/home">
-          <a>Inicio</a>
-        </Link>
         <Link href="/discovery">
           <a>Corales</a>
         </Link>

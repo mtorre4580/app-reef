@@ -1,0 +1,198 @@
+.principal {
+  position: relative;
+  width: 100%;
+  @media (min-width: 681px) {
+    height: 100vh;
+  }
+  background: #3586ff;
+  overflow: hidden;
+  .wave {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: url('/assets/img/wave.png');
+    background-size: 1000px 100px;
+  }
+  .v1 {
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 0;
+  }
+  .v2 {
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+  }
+  .v3 {
+    animation: animate 30s linear infinite;
+    z-index: 998;
+    opacity: 0.2;
+    animation-delay: -2s;
+    bottom: 15px;
+  }
+  .v4 {
+    animation: animate2 5s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -5s;
+    bottom: 20px;
+  }
+  @keyframes animate {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: 1000px;
+    }
+  }
+
+  @keyframes animate2 {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: -1000px;
+    }
+  }
+  .headerPrincipal {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .titleApp {
+      margin: auto;
+      @media (min-width: 681px) {
+        margin: 0;
+      }
+      font-family: 'Rubik', sans-serif;
+      color: #fff;
+      font-weight: 700;
+      font-size: 25px;
+      padding-left: 20px;
+    }
+    .navigation {
+      display: none;
+      @media (min-width: 681px) {
+        display: block;
+      }
+      ol {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        li {
+          display: block;
+          color: #fff;
+          padding: 10px 20px;
+          font-family: 'Baloo Tamma 2', cursive;
+          margin: 10px;
+          a {
+            &:hover {
+              opacity: 0.7;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  .ctnDescriptions {
+    @media (min-width: 681px) {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .features {
+      padding-left: 20px;
+      margin-top: 30px;
+
+      @media (min-width: 681px) {
+        padding-left: 60px;
+      }
+
+      h2 {
+        color: #fff;
+        font-family: 'Rubik', sans-serif;
+        margin-bottom: 20px;
+      }
+      ol {
+        list-style: none;
+        li {
+          color: #fff;
+          font-family: 'Baloo Tamma 2', cursive;
+          padding: 10px;
+          font-size: 18px;
+          span {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .originAndDownload {
+      padding-left: 20px;
+      margin-top: 30px;
+      @media (min-width: 681px) {
+        padding-left: 60px;
+      }
+      h2 {
+        color: #fff;
+        font-family: 'Rubik', sans-serif;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #fff;
+        line-height: 20px;
+        padding: 20px 10px 20px;
+        @media (min-width: 681px) {
+          width: 600px;
+          padding: 0;
+        }
+      }
+    }
+
+    .imgContainer {
+      text-align: center;
+      margin-bottom: 50px;
+      padding-bottom: 100px;
+      @media (min-width: 681px) {
+        text-align: left;
+        padding-bottom: 0;
+      }
+      .logo {
+        width: 140px;
+        height: 140px;
+        @media (min-width: 681px) {
+          width: 300px;
+          height: 300px;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+
+.ctnFooter {
+  display: flex;
+  justify-content: flex-end;
+
+  .iconsSocial {
+    margin: 10px;
+    &:hover  {
+      cursor: pointer;
+    }
+  }
+}
+
+.legals {
+  color: #212121;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
