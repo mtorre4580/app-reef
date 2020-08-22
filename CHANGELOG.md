@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/mtorre4580/app-reef/compare/v0.1.6...v0.1.7) (2020-08-22)
+
+
+### Features
+
+* landing page ([02111da](https://github.com/mtorre4580/app-reef/commit/02111daf6205fa398f392d4f09eb41e358fe29b8))
+
 ### [0.1.6](https://github.com/mtorre4580/app-reef/compare/v0.1.5...v0.1.6) (2020-08-17)
 
 
