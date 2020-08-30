@@ -23,6 +23,7 @@
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "dotenv": "^8.2.0",
+    "express-session": "^1.17.1",
     "google-maps-react": "^2.0.6",
     "mongodb": "^3.6.0",
     "newrelic": "^6.11.0",

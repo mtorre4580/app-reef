@@ -1,11 +1,16 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .formAquarium {
   display: flex;
   flex-direction: column;
   padding: 10px;
+
   @media (min-width: 768px) {
     margin: auto;
     width: 50%;
   }
+
   .form {
     padding: 10px;
     margin: 10px;
@@ -13,24 +18,27 @@
     border: 0;
     background-color: #f5f5f5;
     outline: none;
-    font-family: 'Baloo Tamma 2', cursive;
+    font-family: $font-secondary;
   }
   .btn {
     padding: 10px;
     margin: 10px;
     border-radius: 20px;
     border: 0;
-    background-color: #3586ff;
-    color: #fff;
+    background-color: $color-principal;
+    color: $color-white;
+
     @media (min-width: 768px) {
       width: 200px;
       margin: auto;
+
       &:hover {
         cursor: pointer;
       }
     }
   }
 }
+
 .hint {
   padding: 10px;
   color: #424242;

@@ -23,8 +23,12 @@ function Stores({ t }) {
   );
 }
 
-Stores.getInitialProps = async () => ({
-  namespacesRequired: ['stores'],
-});
+export async function getServerSideProps() {
+  return {
+    props: {
+      namespacesRequired: ['stores'],
+    },
+  };
+}
 
 export default withTranslation('stores')(Stores);

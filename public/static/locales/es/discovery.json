@@ -6,6 +6,7 @@
   "placeholder_search": "¿Qué coral estas buscando?",
   "cancel": "Cancelar",
   "free_shipping": "Envío gratis",
-  "size": "Tamaño:",
-  "price": "Precio:"
+  "size": "Tamaño",
+  "price": "Precio",
+  "error_favorite": "Se produjo un error al agregar el favorito"
 }

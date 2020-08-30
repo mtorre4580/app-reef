@@ -6,6 +6,7 @@
   "placeholder_search": "What coral are you looking for",
   "cancel": "Cancel",
   "free_shipping": "Free Shipping",
-  "size": "Size:",
-  "price": "Price:"
+  "size": "Size",
+  "price": "Price",
+  "error_favorite": "There was an error adding the favorite"
 }

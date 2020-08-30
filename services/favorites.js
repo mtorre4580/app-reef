@@ -7,7 +7,7 @@ export async function addFavorite(id) {
   return data;
 }
 
-export async function getAll() {
-  const { data } = await axios.get(API_FAVORITES);
+export async function getAll(cookie = null) {
+  const { data } = await axios.get(API_FAVORITES, { withCredentials: true, headers: { cookie } });
   return data;
 }

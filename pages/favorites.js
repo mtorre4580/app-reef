@@ -1,14 +1,23 @@
 import Head from 'next/head';
-import { createRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { createRef, useState, useEffect } from 'react';
 import { getAll, addFavorite } from '../services/favorites';
 import { withTranslation } from '../i18n';
 import Header from '../components/Header';
 import CoralItem from '../components/CoralItem';
 import styles from '../styles/favorites.module.scss';
 
-function Favorites({ favorites = [], t }) {
+function Favorites({ favorites = [], t, statusError }) {
   const ref = createRef();
+  const router = useRouter();
   const [items, setItems] = useState(favorites);
+
+  useEffect(() => {
+    const isClient = typeof window !== 'undefined';
+    if (isClient && statusError === 401) {
+      router.push('/login');
+    }
+  });
 
   const handleFavorite = async (id) => {
     try {
@@ -35,18 +44,24 @@ function Favorites({ favorites = [], t }) {
   );
 }
 
-Favorites.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
   try {
-    const favorites = await getAll();
+    const cookies = ctx.req.headers.cookie;
+    const favorites = await getAll(cookies);
     return {
-      favorites,
-      namespacesRequired: ['discovery', 'favorites'],
+      props: {
+        favorites,
+        namespacesRequired: ['discovery', 'favorites'],
+      },
     };
   } catch (err) {
     return {
-      props: null,
+      props: {
+        statusError: err.response.status,
+        namespacesRequired: ['aquarium'],
+      },
     };
   }
-};
+}
 
 export default withTranslation('favorites')(Favorites);

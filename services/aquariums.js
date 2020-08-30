@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API_AQUARIUMS = `${process.env.API_URL}/aquariums`;
 
-export async function getAquarium() {
-  const { data } = await axios.get(API_AQUARIUMS);
+export async function getAquarium(cookie = null) {
+  const { data } = await axios.get(API_AQUARIUMS, { withCredentials: true, headers: { cookie } });
   return data;
 }
 

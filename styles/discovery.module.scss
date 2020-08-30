@@ -1,7 +1,7 @@
+@import './colors.scss';
 @import './variables.scss';
 
 .discovery {
-  background-color: #f5f5f5;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9,21 +9,8 @@
   right: 0;
   overflow: hidden;
 
-  .header {
-    width: 100%;
-  }
-
-  .title {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 900;
-    text-align: center;
-    background-color: #7e57c2;
-    padding: 10px;
-    color: #fff;
-  }
-
   .items {
-    height: calc(100% - 115px);
-    background-color: #fff;
+    height: calc(100% - #{$navigation-height});
+    background-color: $color-white;
   }
 }

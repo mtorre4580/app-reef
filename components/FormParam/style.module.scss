@@ -1,3 +1,6 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .ctn {
   padding: 20px;
   text-align: center;
@@ -9,7 +12,7 @@
   }
 
   .titleForm {
-    font-family: 'Rubik', sans-serif;
+    font-family: $font-principal;
     font-size: 16px;
     margin: 20px 0;
   }
@@ -20,6 +23,7 @@
     border-radius: 20px;
     border: 0;
     background-color: #f5f5f5;
+
     .react-datepicker-wrapper {
       display: block !important;
     }
@@ -47,7 +51,7 @@
         justify-content: space-between;
 
         .labelInputParam {
-          font-family: 'Baloo Tamma 2', cursive;
+          font-family: $font-secondary;
           text-transform: uppercase;
           font-weight: 700;
         }
@@ -73,13 +77,13 @@
 
   .btn {
     border-radius: 20px;
-    background-color: #3586ff;
-    color: #fff;
+    background-color: $color-principal;
+    color: $color-white;
     font-weight: 700;
     border: 0;
     padding: 10px 20px;
     outline: none;
-    font-family: 'Baloo Tamma 2', cursive;
+    font-family: $font-secondary;
     margin: 20px;
 
     &:hover {

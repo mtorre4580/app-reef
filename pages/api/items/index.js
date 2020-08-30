@@ -1,7 +1,6 @@
 import nextConnect from 'next-connect';
 import middleware from '../../../middleware/middleware';
 import { AssertArrayItems, AssertItem } from '../../../validations/items';
-import { ObjectID } from 'mongodb';
 
 const handler = nextConnect();
 
@@ -10,6 +9,7 @@ const applyFavoritesToUser = (items, user = {}) => {
   return items.map((item) => ({
     ...item,
     isFavorite: ids.includes(item._id.toString()),
+    userLogged: Object.keys(user).length > 0,
   }));
 };
 

@@ -1,3 +1,6 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .listParameters {
   padding: 20px;
   list-style: none;
@@ -10,17 +13,17 @@
     margin: 10px 0;
     &:hover {
       cursor: pointer;
-      background-color: #3586ff;
-      color: #fff;
+      background-color: $color-principal;
+      color: $color-white;
     }
     .value {
       font-weight: 700;
-      color: #212121;
+      color: $color-black;
       text-transform: capitalize;
       margin: 0 10px;
     }
     .cant {
-      font-family: 'Baloo Tamma 2', cursive;
+      font-family: $font-secondary;
       margin: 0 10px;
     }
   }

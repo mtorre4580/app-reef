@@ -10,7 +10,10 @@ export default function MenuDrawer({ show, refSection }) {
   const [showError, setShowError] = useState('');
   const ref = useRef();
   const [user, { mutate }] = useCurrentUser();
-
+  /**
+   * Event to handle close drawer
+   * @returns {void}
+   */
   const handleClose = () => {
     if (ref.current && ref.current.style) {
       ref.current.style.width = '0';
@@ -20,6 +23,10 @@ export default function MenuDrawer({ show, refSection }) {
     }
   };
 
+  /**
+   * Event to logout user from app
+   * @returns {Promise<void>}
+   */
   const handleLogout = async () => {
     try {
       await logout();

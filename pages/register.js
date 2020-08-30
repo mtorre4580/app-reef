@@ -8,9 +8,18 @@ import Header from '../components/Header';
 import Snackbar from '../components/Snackbar';
 import styles from '../styles/register.module.scss';
 
+/**
+ * View: Register Page
+ * @param {object} params
+ */
 function Register({ t }) {
   const [showError, setShowError] = useState('');
 
+  /**
+   * Event to handle the register for the user, its okay redirect
+   * @param {object} user
+   * @returns {void}
+   */
   const handleSubmit = async (user) => {
     try {
       await create(user);
@@ -38,8 +47,12 @@ function Register({ t }) {
   );
 }
 
-Register.getInitialProps = async () => ({
-  namespacesRequired: ['register'],
-});
+export async function getServerSideProps() {
+  return {
+    props: {
+      namespacesRequired: ['register'],
+    },
+  };
+}
 
 export default withTranslation('register')(Register);

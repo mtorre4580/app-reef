@@ -1,6 +1,7 @@
 import { createRef, useState } from 'react';
 import Head from 'next/head';
-import { withTranslation, Link } from '../i18n';
+import { useRouter } from 'next/router';
+import { withTranslation } from '../i18n';
 import Header from '../components/Header';
 import FormParam from '../components/FormParam';
 import { getAquarium, registerParameters } from '../services/aquariums';
@@ -8,12 +9,14 @@ import Snackbar from '../components/Snackbar';
 
 function Parameters({ t, _id }) {
   const ref = createRef();
+  const router = useRouter();
   const [showError, setShowError] = useState('');
 
   const handleOnSubmit = async ({ date, params }) => {
     try {
       await registerParameters(_id, date, params);
       setShowError('');
+      router.push('/aquarium');
     } catch (err) {
       setShowError(t('error_register_params'));
     }
@@ -37,22 +40,15 @@ function Parameters({ t, _id }) {
   );
 }
 
-export async function getServerSideProps() {
-  try {
-    const response = await getAquarium();
-    return {
-      props: {
-        ...response,
-        namespacesRequired: ['parameters'],
-      },
-    };
-  } catch (err) {
-    return {
-      props: {
-        namespacesRequired: ['parameters'],
-      },
-    };
-  }
+export async function getServerSideProps(ctx) {
+  const cookies = ctx.req.headers.cookie;
+  const response = await getAquarium(cookies);
+  return {
+    props: {
+      ...response,
+      namespacesRequired: ['parameters'],
+    },
+  };
 }
 
 export default withTranslation('parameters')(Parameters);

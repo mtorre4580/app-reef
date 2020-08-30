@@ -1,5 +1,8 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .listMap {
-  background-color: #fff;
+  background-color: $color-white;
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -7,6 +10,7 @@
   position: absolute;
   top: 136px;
   width: 100%;
+
   .loading {
     text-align: center;
     font-weight: 700;
@@ -18,25 +22,29 @@
     width: 50%;
     text-align: center;
     margin: 20px 0;
+
     .title {
       font-size: 15px;
       font-weight: 600;
-      font-family: 'Baloo Tamma 2', cursive;
+      font-family: $font-secondary;
     }
+
     img {
       height: 64px;
       margin: 20px auto;
       display: block;
       border-radius: 4px;
     }
+
     .info {
       font-size: 12px;
       font-weight: 600;
       margin: 10px;
     }
+
     .call {
-      background-color: #3586ff;
-      color: #fff;
+      background-color: $color-principal;
+      color: $color-white;
       padding: 5px;
       border-radius: 20px;
       display: block;

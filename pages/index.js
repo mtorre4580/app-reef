@@ -1,9 +1,13 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/index.module.scss';
 import { IconCheck, IconFacebook, IconInstagram } from '../components/Icons';
 import { withTranslation } from '../i18n';
-import Link from 'next/link';
 
+/**
+ * View: Landing Page
+ * @param {object} params
+ */
 function Landing({ t }) {
   return (
     <>
@@ -19,7 +23,7 @@ function Landing({ t }) {
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="es-AR" />
         <meta property="og:site_name" content="Reef-Corals" />
-        <meta name="theme-color" content="#9c27b0" />
+        <meta name="theme-color" content="#3586ff" />
       </Head>
       <main>
         <section className={styles.principal}>
@@ -86,7 +90,7 @@ function Landing({ t }) {
             <a className={styles.iconsSocial}>
               <IconFacebook color="#3586ff" />
             </a>
-            <a className={styles.iconsSocial}>
+            <a className={styles.iconsSocial} href="https://www.instagram.com/reefcorals.arg/" target="_blank">
               <IconInstagram color="#3586ff" />
             </a>
           </div>
@@ -97,8 +101,12 @@ function Landing({ t }) {
   );
 }
 
-Landing.getInitialProps = async () => ({
-  namespacesRequired: ['landing'],
-});
+export async function getServerSideProps() {
+  return {
+    props: {
+      namespacesRequired: ['landing'],
+    },
+  };
+}
 
 export default withTranslation('landing')(Landing);

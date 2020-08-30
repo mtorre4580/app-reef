@@ -1,8 +1,10 @@
+@import './colors.scss';
+
 .noFavorites {
   text-align: center;
   font-size: 16px;
   font-weight: 700;
-  color: #212121;
+  color: $color-black;
   padding: 10px;
 }
 

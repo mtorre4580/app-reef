@@ -6,6 +6,10 @@ import Head from 'next/head';
 import Header from '../../components/Header';
 import CarouselImages from '../../components/CarouselImages';
 
+/**
+ * View: Detail Page
+ * @param {object} params
+ */
 function Detail({ t, item }) {
   const ref = createRef();
   return (
@@ -41,19 +45,15 @@ function Detail({ t, item }) {
   );
 }
 
-Detail.getInitialProps = async (ctx) => {
-  try {
-    const { id } = ctx.query;
-    const item = await getDetail(id);
-    return {
+export async function getServerSideProps(ctx) {
+  const { id } = ctx.query;
+  const item = await getDetail(id);
+  return {
+    props: {
       item,
       namespacesRequired: ['detail'],
-    };
-  } catch (err) {
-    return {
-      props: null,
-    };
-  }
-};
+    },
+  };
+}
 
 export default withTranslation('detail')(Detail);

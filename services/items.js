@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const API_ITEMS = `${process.env.API_URL}/items`;
 
-export async function getAll() {
-  const { data } = await axios.get(API_ITEMS);
+export async function getAll(cookie = null) {
+  const { data } = await axios.get(API_ITEMS, { withCredentials: true, headers: { cookie } });
   return data;
 }
 

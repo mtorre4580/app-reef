@@ -7,9 +7,18 @@ import { login } from '../services/auth';
 import FormAuth from '../components/FormAuth';
 import Snackbar from '../components/Snackbar';
 
+/**
+ * View: Login Page
+ * @param {object} params
+ */
 function Login({ t }) {
   const [showError, setShowError] = useState('');
 
+  /**
+   * Event to handle auth user and redirect to discovery section
+   * @param {object} user
+   * @returns {void}
+   */
   const handleSubmit = async (user) => {
     try {
       await login(user);
@@ -44,8 +53,12 @@ function Login({ t }) {
   );
 }
 
-Login.getInitialProps = async () => ({
-  namespacesRequired: ['login'],
-});
+export async function getServerSideProps() {
+  return {
+    props: {
+      namespacesRequired: ['login'],
+    },
+  };
+}
 
 export default withTranslation('login')(Login);

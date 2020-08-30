@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .aquarium {
   .ctn {
     padding-top: 80px;
@@ -8,7 +10,7 @@
   }
   .measure {
     padding: 25px;
-    font-family: 'Rubik', sans-serif;
+    font-family: $font-principal;
   }
   .add {
     margin-top: 15px;

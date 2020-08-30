@@ -1,4 +1,5 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/aquarium.module.scss';
 import { withTranslation } from '../i18n';
 import { getAquarium, registerAquarium, updateParameter } from '../services/aquariums';
@@ -12,8 +13,9 @@ import FloatButton from '../components/FloatButton';
 import Scrolling from '../components/Scrolling';
 import Metrics from '../components/Metrics';
 
-function Aquarium({ t, _id, name, type, parameters }) {
+function Aquarium({ t, _id, name, type, parameters, hasErrorGeneric, statusError }) {
   const ref = createRef();
+  const router = useRouter();
   const [userAquarium, setUserAquarium] = useState({ name, type });
   const [lastDate] = Object.keys(parameters || {});
   const [lastMeasure, setLastMeasure] = useState(lastDate);
@@ -21,6 +23,14 @@ function Aquarium({ t, _id, name, type, parameters }) {
   const [editParam, setEditParam] = useState(null);
   const [showError, setShowError] = useState('');
   const hasAquarium = userAquarium.name && userAquarium.type;
+  const showPage = !(hasErrorGeneric || statusError);
+
+  useEffect(() => {
+    const isClient = typeof window !== 'undefined';
+    if (isClient && statusError === 401) {
+      router.push('/login');
+    }
+  });
 
   const handleSubmitRegister = async (data) => {
     try {
@@ -53,43 +63,49 @@ function Aquarium({ t, _id, name, type, parameters }) {
   return (
     <section className={styles.aquarium} ref={ref}>
       <Header title={t('aquarium')} refSection={ref} />
-      <div className={styles.ctn}>
-        {!hasAquarium && <FormAquarium onSubmit={handleSubmitRegister} />}
-        {!editParam && hasAquarium && (
-          <>
-            {lastMeasure && (
-              <>
-                <Scrolling parameters={parameters} onClick={handleOnClickDate} selected={lastMeasure} />
-                <h3 className={styles.measure}>Medición: {lastMeasure}</h3>
-                <ListParameters parameters={parametersUser} onClick={handleEditParameter} />
-                <Metrics parameters={parameters} />
-              </>
-            )}
-            {!lastMeasure && <p className={styles.title}>{t('empty_parameters')}</p>}
-          </>
-        )}
-        {editParam && hasAquarium && (
-          <FormEditParam
-            t={t}
-            parameter={editParam}
-            onCancel={() => setEditParam(null)}
-            onClick={handleUpdateParameter}
-          />
-        )}
-        {hasAquarium && (
-          <FloatButton path="/parameters">
-            <IconAdd className={styles.add} />
-          </FloatButton>
-        )}
-        {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
-      </div>
+      {showPage && (
+        <div className={styles.ctn}>
+          {!hasAquarium && <FormAquarium onSubmit={handleSubmitRegister} />}
+          {!editParam && hasAquarium && (
+            <>
+              {lastMeasure && (
+                <>
+                  <Scrolling parameters={parameters} onClick={handleOnClickDate} selected={lastMeasure} />
+                  <h3 className={styles.measure}>Medición: {lastMeasure}</h3>
+                  <ListParameters parameters={parametersUser} onClick={handleEditParameter} />
+                  <Metrics parameters={parameters} />
+                </>
+              )}
+              {!lastMeasure && <p className={styles.title}>{t('empty_parameters')}</p>}
+            </>
+          )}
+          {editParam && hasAquarium && (
+            <FormEditParam
+              t={t}
+              parameter={editParam}
+              onCancel={() => setEditParam(null)}
+              onClick={handleUpdateParameter}
+            />
+          )}
+          {hasAquarium && (
+            <FloatButton path="/parameters">
+              <IconAdd className={styles.add} />
+            </FloatButton>
+          )}
+          {showError && <Snackbar onClose={() => setShowError('')}>{showError}</Snackbar>}
+        </div>
+      )}
+      {hasErrorGeneric && (
+        <p style={{ paddingTop: '100px', textAlign: 'center' }}>Se produjo un error, vuelva en unos momentos...</p>
+      )}
     </section>
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
   try {
-    const response = await getAquarium();
+    const cookies = ctx.req.headers.cookie;
+    const response = await getAquarium(cookies);
     return {
       props: {
         ...response,
@@ -99,6 +115,8 @@ export async function getServerSideProps() {
   } catch (err) {
     return {
       props: {
+        statusError: err.response.status,
+        hasErrorGeneric: true,
         namespacesRequired: ['aquarium'],
       },
     };

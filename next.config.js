@@ -16,6 +16,7 @@ module.exports = {
     NEW_RELIC: process.env.NEW_RELIC,
     API_KEY_SENDGRID: process.env.API_KEY_SENDGRID,
     SENDGRID_FROM: process.env.SENDGRID_FROM,
-    API_URL: 'https://reef-corals.vercel.app/api',
+    API_URL: process.env.API_URL, //https://reef-corals.vercel.app/api,
+    SESSION_SECRET: process.env.SESSION_SECRET,
   },
 };

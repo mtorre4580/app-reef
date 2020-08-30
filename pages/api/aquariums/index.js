@@ -9,13 +9,11 @@ handler.use(middleware);
 
 handler.get(async (req, res) => {
   try {
-    // if (!req.user) {
-    //   return res.status(401).send('User is not logged in');
-    // }
-    const { _id } = { _id: '5f30ade0f58e360007c3e123' }; //req.user;
-
+    if (!req.user) {
+      return res.status(401).send('User is not logged in');
+    }
+    const { _id } = req.user;
     const aquarium = await req.db.collection('aquariums').findOne({ idUser: ObjectID(_id) });
-
     return res.status(200).json(aquarium);
   } catch (err) {
     return res.status(500).json({ msg: 'Unexpected Error', err });

@@ -1,3 +1,6 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .sidenav {
   height: 100%;
   width: 0;
@@ -5,7 +8,7 @@
   z-index: 10;
   top: 0;
   left: 0;
-  background-color: #3586ff;
+  background-color: $color-principal;
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
@@ -16,10 +19,10 @@
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #fff;
+    color: $color-white;
     display: block;
     transition: 0.3s;
-    font-family: 'Rubik', sans-serif;
+    font-family: $font-principal;
     width: 200px;
   }
   .closebtn {
@@ -29,7 +32,7 @@
     font-size: 36px;
     margin-left: 50px;
     background: transparent;
-    color: #fff;
+    color: $color-white;
     border: 0;
     outline: none;
     &:hover {

@@ -2,13 +2,17 @@ import styles from '../styles/discovery.module.scss';
 import { useState, createRef } from 'react';
 import { getAll, getMore, filterByType, search } from '../services/items';
 import { addFavorite } from '../services/favorites';
+import { useWindowSize } from '../hooks/useWindowSize';
 import { withTranslation } from '../i18n';
 import InfiniteScroll from '../components/InfiniteScroll';
 import SearchBox from '../components/SearchBox';
 import Header from '../components/Header';
 import Snackbar from '../components/Snackbar';
-import { useWindowSize } from '../hooks/useWindowSize';
 
+/**
+ * View: Discovery
+ * @param {object} params
+ */
 function Discovery({ items, paging, t }) {
   const { width } = useWindowSize();
   const ref = createRef();
@@ -24,6 +28,10 @@ function Discovery({ items, paging, t }) {
     filterApplied: null,
   });
 
+  /**
+   * Event to handle if exists items to fetch again (InfiniteScroll)
+   * @returns {Promise<void>}
+   */
   const loadNextPage = async () => {
     if (state.items.length >= state.total) {
       setState({ ...state, hasNextPage: false, isNextPageLoading: false });
@@ -43,6 +51,11 @@ function Discovery({ items, paging, t }) {
     }
   };
 
+  /**
+   * Event to handle when the user click in any filter from navigation shorcut
+   * @param {string} type
+   * @returns {Promise<void>}
+   */
   const applyFilter = async (type) => {
     try {
       setState({ ...state, isFilter: true });
@@ -60,6 +73,11 @@ function Discovery({ items, paging, t }) {
     }
   };
 
+  /**
+   * Event to handle when user is click searching box
+   * @param {string} query
+   * @returns {Promise<void>}
+   */
   const handleSearch = async (query) => {
     try {
       setState({ ...state, isFilter: true });
@@ -70,6 +88,10 @@ function Discovery({ items, paging, t }) {
     }
   };
 
+  /**
+   * Event to handle when user clear the current search, fetch all items again
+   * @returns {Promise<void>}
+   */
   const handleOnClear = async () => {
     try {
       setState({ ...state, isFilter: true });
@@ -80,10 +102,17 @@ function Discovery({ items, paging, t }) {
     }
   };
 
+  /**
+   * Event to add the item to favorite for user
+   * @param {string} id
+   * @returns {Promise<void>}
+   */
   const handleFavorite = async (id) => {
     try {
       await addFavorite(id);
-    } catch (err) {}
+    } catch (err) {
+      setShowError(t('error_favorite'));
+    }
   };
 
   return (
@@ -110,18 +139,15 @@ function Discovery({ items, paging, t }) {
   );
 }
 
-Discovery.getInitialProps = async (ctx) => {
-  try {
-    const response = await getAll();
-    return {
+export async function getServerSideProps(ctx) {
+  const cookies = ctx.req.headers.cookie;
+  const response = await getAll(cookies);
+  return {
+    props: {
       ...response,
       namespacesRequired: ['discovery'],
-    };
-  } catch (err) {
-    return {
-      props: null,
-    };
-  }
-};
+    },
+  };
+}
 
 export default withTranslation('discovery')(Discovery);

@@ -1,9 +1,12 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #f5f5f5;
-  font-family: 'Baloo Tamma 2', cursive;
+  font-family: $font-secondary;
   .subtitle {
     font-size: 15px;
     color: #424242;

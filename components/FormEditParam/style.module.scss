@@ -1,35 +1,44 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .title {
   text-align: center;
   padding: 10px;
 }
+
 .formEditParam {
   display: flex;
   flex-direction: column;
   padding: 20px;
+
   @media (min-width: 681px) {
     width: 50%;
     margin: auto;
   }
+
   .input {
     padding: 10px;
     border-radius: 20px;
     border: 0;
     background-color: #f5f5f5;
   }
+
   .ctn {
     display: flex;
     justify-content: space-around;
     padding: 20px;
   }
+
   .btn {
     border-radius: 20px;
-    background-color: #3586ff;
-    color: #fff;
+    background-color: $color-principal;
+    color: $color-white;
     font-weight: 700;
     border: 0;
     padding: 10px 20px;
     outline: none;
-    font-family: 'Baloo Tamma 2', cursive;
+    font-family: $font-secondary;
+
     &:hover {
       cursor: pointer;
     }

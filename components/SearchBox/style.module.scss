@@ -1,3 +1,6 @@
+@import '../../styles/colors.scss';
+@import '../../styles/variables.scss';
+
 .searchBox {
   display: flex;
   justify-content: space-around;
@@ -10,7 +13,7 @@
   }
 
   input[type='search'] {
-    background-color: #fff;
+    background-color: $color-white;
     width: 100%;
     transition: width 0.4s ease-in-out;
     padding-left: 30px;
@@ -22,7 +25,7 @@
   }
 
   input[type='search']:focus {
-    background-color: #fff;
+    background-color: $color-white;
   }
 
   .clear {
@@ -30,11 +33,11 @@
     color: #212121;
     font-weight: 700;
     border: 0;
-    background-color: #3586ff;
-    color: #fff;
+    background-color: $color-principal;
+    color: $color-white;
     border-radius: 20px;
     margin: 0 10px;
-    font-family: 'Baloo Tamma 2', cursive;
+    font-family: $font-secondary;
     outline: none;
     &:hover {
       cursor: pointer;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { registerLocale } from 'react-datepicker';
+import { formatDate } from '../../services/dates';
 import es from 'date-fns/locale/es';
 import Scrolling from '../Scrolling';
 import { IconClose } from '../Icons';
@@ -30,7 +31,7 @@ export default function FormParam({ onSubmit, t }) {
     if (valor) {
       onSubmit({
         params: parametersRegister,
-        date: startDate,
+        date: formatDate(startDate),
       });
     }
   };
@@ -46,7 +47,7 @@ export default function FormParam({ onSubmit, t }) {
     const { name, value } = event.target;
     setParametersRegister({
       ...parametersRegister,
-      [name]: value,
+      [name]: parseFloat(value),
     });
   };
 

@@ -1,11 +1,16 @@
+@import './colors.scss';
+@import './variables.scss';
+
 .principal {
   position: relative;
   width: 100%;
+  background: $color-principal;
+  overflow: hidden;
+
   @media (min-width: 681px) {
     height: 100vh;
   }
-  background: #3586ff;
-  overflow: hidden;
+
   .wave {
     position: absolute;
     left: 0;
@@ -15,6 +20,7 @@
     background: url('/assets/img/wave.png');
     background-size: 1000px 100px;
   }
+
   .v1 {
     animation: animate 30s linear infinite;
     z-index: 1000;
@@ -22,6 +28,7 @@
     animation-delay: 0s;
     bottom: 0;
   }
+
   .v2 {
     animation: animate2 15s linear infinite;
     z-index: 999;
@@ -29,6 +36,7 @@
     animation-delay: -5s;
     bottom: 10px;
   }
+
   .v3 {
     animation: animate 30s linear infinite;
     z-index: 998;
@@ -36,6 +44,7 @@
     animation-delay: -2s;
     bottom: 15px;
   }
+
   .v4 {
     animation: animate2 5s linear infinite;
     z-index: 997;
@@ -43,6 +52,7 @@
     animation-delay: -5s;
     bottom: 20px;
   }
+
   @keyframes animate {
     0% {
       background-position-x: 0;
@@ -60,38 +70,46 @@
       background-position-x: -1000px;
     }
   }
+
   .headerPrincipal {
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+
     .titleApp {
       margin: auto;
-      @media (min-width: 681px) {
-        margin: 0;
-      }
-      font-family: 'Rubik', sans-serif;
-      color: #fff;
+      font-family: $font-principal;
+      color: $color-white;
       font-weight: 700;
       font-size: 25px;
       padding-left: 20px;
+
+      @media (min-width: 681px) {
+        margin: 0;
+      }
     }
+
     .navigation {
       display: none;
+
       @media (min-width: 681px) {
         display: block;
       }
+
       ol {
         list-style: none;
         display: flex;
         flex-direction: row;
+
         li {
           display: block;
-          color: #fff;
+          color: $color-white;
           padding: 10px 20px;
-          font-family: 'Baloo Tamma 2', cursive;
+          font-family: $font-secondary;
           margin: 10px;
+
           a {
             &:hover {
               opacity: 0.7;
@@ -102,6 +120,7 @@
       }
     }
   }
+
   .ctnDescriptions {
     @media (min-width: 681px) {
       display: flex;
@@ -117,17 +136,20 @@
       }
 
       h2 {
-        color: #fff;
-        font-family: 'Rubik', sans-serif;
+        color: $color-white;
+        font-family: $font-principal;
         margin-bottom: 20px;
       }
+
       ol {
         list-style: none;
+
         li {
-          color: #fff;
-          font-family: 'Baloo Tamma 2', cursive;
+          color: $color-white;
+          font-family: $font-secondary;
           padding: 10px;
           font-size: 18px;
+
           span {
             margin-left: 10px;
           }
@@ -141,15 +163,18 @@
       @media (min-width: 681px) {
         padding-left: 60px;
       }
+
       h2 {
-        color: #fff;
-        font-family: 'Rubik', sans-serif;
+        color: $color-white;
+        font-family: $font-principal;
         margin-bottom: 20px;
       }
+
       p {
-        color: #fff;
+        color: $color-white;
         line-height: 20px;
         padding: 20px 10px 20px;
+
         @media (min-width: 681px) {
           width: 600px;
           padding: 0;
@@ -161,13 +186,16 @@
       text-align: center;
       margin-bottom: 50px;
       padding-bottom: 100px;
+
       @media (min-width: 681px) {
         text-align: left;
         padding-bottom: 0;
       }
+
       .logo {
         width: 140px;
         height: 140px;
+
         @media (min-width: 681px) {
           width: 300px;
           height: 300px;
@@ -184,6 +212,7 @@
 
   .iconsSocial {
     margin: 10px;
+
     &:hover  {
       cursor: pointer;
     }
@@ -191,7 +220,7 @@
 }
 
 .legals {
-  color: #212121;
+  color: $color-black;
   font-weight: 600;
   font-size: 20px;
   text-align: center;
